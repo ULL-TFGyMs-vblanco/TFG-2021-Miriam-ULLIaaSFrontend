@@ -1,18 +1,25 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <q-page-container>
+    <q-toolbar>
+      <q-btn class="bg-white"
+             icon="table_rows"
+      ></q-btn>
+      <q-separator vertical inset class="q-mx-lg" />
+      <q-btn class="bg-white"
+             icon="auto_awesome_mosaic"
+      ></q-btn>
+    </q-toolbar>
+    <Panel></Panel>
+  </q-page-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Panel from '@/components/Panel'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Panel
   }
 }
 </script>
