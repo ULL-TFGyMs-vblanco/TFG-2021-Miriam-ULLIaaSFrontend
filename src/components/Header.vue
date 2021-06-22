@@ -14,7 +14,6 @@
       </q-toolbar>
 
       <q-toolbar class="bg-blue-grey-2 text-black">
-        <q-space></q-space>
         <div class="text-caption text-weight-medium">Panel de máquinas virtuales en el IaaS</div>
         <q-space></q-space>
         <q-btn type="a"

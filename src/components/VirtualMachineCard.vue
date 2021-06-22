@@ -7,7 +7,7 @@
     <q-card-section>
       <div class="text-overline text-orange-9">{{ vm.status }}</div>
       <div class="text-h5 q-mt-sm q-mb-xs">{{ vm.name }}</div>
-      <div class="text-caption text-grey">{{ vm.created }}</div>
+      <div class="text-caption text-grey">{{ vm.ip }}</div>
     </q-card-section>
   </q-card>
 </template>
@@ -23,7 +23,6 @@ export default {
   data () {
     return {
       image: require(`../assets/os/${this.vm.so}.jpg`)
-      // image: '../assets/os/macOS.png'
     }
   }
 }
