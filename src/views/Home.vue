@@ -3,14 +3,16 @@
     <q-toolbar>
       <q-btn class="bg-white"
              icon="r_table_rows"
-             round
              @click="content = 'table'"
+             dense
+             flat
       ></q-btn>
       <q-separator vertical inset class="q-mx-md" />
       <q-btn class="bg-white"
              icon="r_auto_awesome_mosaic"
-             round
              @click="content = 'mosaic'"
+             dense
+             flat
       ></q-btn>
     </q-toolbar>
 

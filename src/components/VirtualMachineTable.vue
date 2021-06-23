@@ -71,6 +71,12 @@ export default {
       })
       index++
     })
+    this.data.push({
+      name: 'SyTW-BackEND2',
+      status: 'ON',
+      ip: '192.168.1.1',
+      imageIndex: 0
+    })
   }
 }
 </script>
