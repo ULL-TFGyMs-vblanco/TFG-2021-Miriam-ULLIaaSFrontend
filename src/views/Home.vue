@@ -1,19 +1,24 @@
 <template>
   <q-page-container>
     <q-toolbar>
-      <q-btn class="bg-white"
-             icon="r_table_rows"
-             @click="content = 'table'"
-             dense
-             flat
-      ></q-btn>
-      <q-separator vertical inset class="q-mx-md"></q-separator>
-      <q-btn class="bg-white"
-             icon="r_auto_awesome_mosaic"
-             @click="content = 'mosaic'"
-             dense
-             flat
-      ></q-btn>
+      <q-btn-group outline>
+<!--        <q-btn outline color="brown" label="First" />-->
+<!--        <q-btn outline color="brown" label="Second" icon-right="watch_later" />-->
+<!--        <q-btn outline color="brown" label="Third" />-->
+        <q-btn class="bg-white"
+               icon="r_table_rows"
+               outline
+               color="grey-8"
+               @click="content = 'table'"
+        ></q-btn>
+        <q-separator vertical inset class="q-mx-md"></q-separator>
+        <q-btn class="bg-white"
+               icon="r_auto_awesome_mosaic"
+               outline
+               color="grey-8"
+               @click="content = 'mosaic'"
+        ></q-btn>
+      </q-btn-group>
       <q-space></q-space>
 
       <q-btn flat

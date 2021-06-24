@@ -32,6 +32,7 @@
         <VirtualMachineTable :props="props"
                              :images="images"
                              :toggleValue="toggleValue"
+                             :virtualMachines="virtualMachines.allVirtualMachines"
         ></VirtualMachineTable>
       </template>
 
@@ -42,7 +43,8 @@
         <VirtualMachineCard :props="props"
                             :images="images"
                             :toggleValue="toggleValue"
-                            class="q-pa-sm q-pt-md row justify-center cards"
+                            :virtualMachines="virtualMachines.allVirtualMachines"
+                            class="q-pa-sm row justify-center cards"
         ></VirtualMachineCard>
       </template>
     </q-table>
@@ -108,83 +110,101 @@ export default {
         {
           id: '4328',
           name: 'SyTW-BackEND',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'ON',
           so: 'linux',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         },
         {
           id: '4312',
           name: 'SyTW-BackEND2',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'OFF',
           so: 'windows',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         },
         {
           id: '4321',
           name: 'SyTW-BackEND3',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'ON',
           so: 'macOS',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.1'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         },
         {
           id: '4328',
           name: 'SyTW-BackEND4',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'SUSPEND',
           so: 'linux',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         },
         {
           id: '4312',
           name: 'SyTW-BackEND5',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'ON',
           so: 'windows',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         },
         {
           id: '4321',
           name: 'SyTW-BackEND6',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'OFF',
           so: 'macOS',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         },
         {
           id: '4328',
           name: 'SyTW-BackEND7',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'OFF',
           so: 'linux',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         },
         {
           id: '4312',
           name: 'SyTW-BackEND8',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'OFF',
           so: 'windows',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         },
         {
           id: '4321',
           name: 'SyTW-BackEND9',
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'SUSPEND',
           so: 'macOS',
+          memory: '4 GiB',
+          template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD',
-          updated: 'YYYY-MM-DD'
+          created: 'YYYY-MM-DD'
         }
       ]
     }

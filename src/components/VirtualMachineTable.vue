@@ -1,10 +1,16 @@
 <template>
   <q-tr :props="props">
     <q-td key="name" :props="props">
-      <div class="q-pa-sm row items-center q-gutter-md justify-center">
-        <img :src="images[props.row.index].url" width="70">
-        <q-badge color="teal" outline>{{ props.row.name }}</q-badge>
-      </div>
+      <router-link to="/vm"
+                   style="text-decoration: none; color: black"
+      >
+        <div class="q-pa-sm row items-center q-gutter-md justify-center"
+             @click="saveVirtualMachine (virtualMachines[props.row.index])"
+        >
+          <img :src="images[props.row.index].url" width="70">
+          <q-badge color="teal" outline>{{ props.row.name }}</q-badge>
+        </div>
+      </router-link>
     </q-td>
     <q-td key="ips" :props="props">
       <div class="text-caption text-orange-9 column">
@@ -31,12 +37,19 @@ export default {
   props: {
     props: Object,
     images: Array,
-    toggleValue: Array
+    toggleValue: Array,
+    virtualMachines: Array
+  },
+
+  methods: {
+    saveVirtualMachine (vm) {
+      this.$store.dispatch('setVirtualMachineAction', vm)
+    }
   }
 }
 </script>
 
 <style lang="sass" scoped>
 td:first-child
-  background-color: #f5f5dc
+  background-color: #f5f5f5
 </style>
