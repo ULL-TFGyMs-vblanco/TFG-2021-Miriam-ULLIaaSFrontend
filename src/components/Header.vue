@@ -27,7 +27,13 @@
       </q-toolbar>
     </q-header>
 
-    <RightMenu :right="right"></RightMenu>
+    <q-drawer show-if-above
+              v-model="right"
+              side="right"
+              elevated
+    >
+      <RightMenu></RightMenu>
+    </q-drawer>
   </div>
 </template>
 
@@ -43,7 +49,7 @@ export default {
 
   data () {
     return {
-      right: true
+      right: false
     }
   }
 }

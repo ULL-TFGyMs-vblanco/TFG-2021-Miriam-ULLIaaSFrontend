@@ -1,22 +1,27 @@
 <template>
-  <q-table class="my-table"
-           :data="data"
-           :columns="columns"
-           row-key="name"
-           virtual-scroll
-  >
-    <template v-slot:body-cell-name="props">
-      <q-td :props="props">
-        <div class="q-pa-md row items-center q-gutter-md">
-          <img :src="images[props.row.imageIndex].url" width="70">
-          <q-badge :label="props.value"
-                   outline
-                   color="teal"
-          ></q-badge>
-        </div>
-      </q-td>
-    </template>
-  </q-table>
+  <q-tr :props="props">
+    <q-td key="name" :props="props">
+      <div class="q-pa-sm row items-center q-gutter-md justify-center">
+        <img :src="images[props.row.index].url" width="70">
+        <q-badge color="teal" outline>{{ props.row.name }}</q-badge>
+      </div>
+    </q-td>
+    <q-td key="ips" :props="props">
+      <div class="text-caption text-orange-9 column">
+        <span v-for="(ip, index) in props.row.ips"
+              :key="index"
+              :ip="ip"
+        >{{ ip }}</span>
+      </div>
+    </q-td>
+    <q-td key="status" :props="props">
+      <q-toggle v-model="toggleValue[props.row.index]"
+                color="secondary"
+                style="color: #ec899a"
+                icon="power_settings_new"
+      ></q-toggle>
+    </q-td>
+  </q-tr>
 </template>
 
 <script>
@@ -24,68 +29,14 @@ export default {
   name: 'VirtualMachineTable',
 
   props: {
-    virtualMachines: Array
-  },
-
-  data () {
-    return {
-      images: [],
-      columns: [
-        {
-          name: 'name',
-          required: true,
-          label: 'NOMBRE',
-          align: 'left',
-          field: (row) => row.name,
-          format: (val) => `${val}`,
-          sortable: true
-        },
-        {
-          name: 'status',
-          label: 'ESTADO',
-          field: 'status',
-          align: 'left',
-          sortable: true
-        },
-        {
-          name: 'ip',
-          label: 'IP',
-          field: 'ip',
-          align: 'left',
-          sortable: true
-        }
-      ],
-      data: []
-    }
-  },
-
-  beforeMount () {
-    var index = 0
-    this.virtualMachines.forEach(vm => {
-      this.images.push({ url: require(`../assets/os/${vm.so}.jpg`) })
-      this.data.push({
-        name: vm.name,
-        status: vm.status,
-        ip: vm.ip,
-        imageIndex: index
-      })
-      index++
-    })
-    this.data.push({
-      name: 'SyTW-BackEND2',
-      status: 'ON',
-      ip: '192.168.1.1',
-      imageIndex: 0
-    })
+    props: Object,
+    images: Array,
+    toggleValue: Array
   }
 }
 </script>
 
 <style lang="sass" scoped>
-$desktop-width: 1024px
-$tablet-width: 768px
-
-.my-table
-  td:first-child
-    background-color: #f5f5dc
+td:first-child
+  background-color: #f5f5dc
 </style>

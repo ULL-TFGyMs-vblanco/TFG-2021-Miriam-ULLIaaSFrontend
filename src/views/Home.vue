@@ -1,5 +1,5 @@
 <template>
-  <q-page-container class="q-pa-md row q-gutter-md justify-center">
+  <q-page-container>
     <q-toolbar>
       <q-btn class="bg-white"
              icon="r_table_rows"
@@ -7,13 +7,19 @@
              dense
              flat
       ></q-btn>
-      <q-separator vertical inset class="q-mx-md" />
+      <q-separator vertical inset class="q-mx-md"></q-separator>
       <q-btn class="bg-white"
              icon="r_auto_awesome_mosaic"
              @click="content = 'mosaic'"
              dense
              flat
       ></q-btn>
+      <q-space></q-space>
+
+      <q-btn flat
+             class="bg-brown-2 text-overline"
+             size="sm"
+      >Nueva máquina virtual</q-btn>
     </q-toolbar>
 
     <Panel :content="content"></Panel>
@@ -37,3 +43,6 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+</style>

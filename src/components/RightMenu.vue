@@ -1,9 +1,5 @@
 <template>
-  <q-drawer show-if-above
-            v-model="right"
-            side="right"
-            elevated
-  >
+  <div>
     <q-list>
       <q-item-label header
                     class="column"
@@ -242,16 +238,12 @@
         <q-icon name="fab fa-linkedin-in" size="sm"></q-icon>
       </a>
     </q-footer>
-  </q-drawer>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'RightMenu',
-
-  props: {
-    right: Boolean
-  }
+  name: 'RightMenu'
 }
 </script>
 
