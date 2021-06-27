@@ -7,7 +7,9 @@
             bordered
             @click="saveVirtualMachine (virtualMachines[props.row.index])"
     >
-      <img :src="images[props.row.index].url" :alt="props.row.so">
+      <img :src="images[props.row.index].url"
+           :alt="props.row.os"
+      >
       <q-card-section class="column">
         <div class="text-h5 q-mt-sm q-mb-xs">{{ props.row.name }}</div>
         <div class="text-caption text-orange-9 column">

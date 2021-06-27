@@ -7,7 +7,10 @@
       >
         <div class="my-q-py row">
           <q-item-section>
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png" width="100" class="rounded-borders">
+            <img src="https://cdn.quasar.dev/img/boy-avatar.png"
+                 width="100"
+                 class="rounded-borders"
+            >
           </q-item-section>
           <q-item-section class="text-black">
             <strong>Míriam Núñez García</strong>
@@ -214,28 +217,37 @@
          href="https://www.facebook.com/universidaddelalaguna"
          class="q-pa-md"
       >
-        <q-icon name="fab fa-facebook" size="sm"></q-icon>
+        <q-icon name="fab fa-facebook"
+                size="sm"
+        ></q-icon>
       </a>
       <a title="Twitter ULL"
          target="_blank"
          href="https://twitter.com/ull"
          class="q-pa-md"
       >
-        <q-icon name="fab fa-twitter" size="sm"></q-icon>
+        <q-icon name="fab fa-twitter"
+                size="sm"
+        ></q-icon>
       </a>
       <a title="Youtube ULL"
          target="_blank"
          href="https://www.youtube.com/canalULL"
          class="q-pa-md"
       >
-        <q-icon name="fab fa-youtube" size="sm" color="red"></q-icon>
+        <q-icon name="fab fa-youtube"
+                size="sm"
+                color="red"
+        ></q-icon>
       </a>
       <a title="Linkedin ULL"
          target="_blank"
          href="https://www.linkedin.com/groups/Universidad-Laguna-2656178"
          class="q-pa-md"
       >
-        <q-icon name="fab fa-linkedin-in" size="sm"></q-icon>
+        <q-icon name="fab fa-linkedin-in"
+                size="sm"
+        ></q-icon>
       </a>
     </q-footer>
   </div>

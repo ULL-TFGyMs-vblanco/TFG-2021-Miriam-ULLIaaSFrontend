@@ -7,7 +7,12 @@
                color="grey-8"
                @click="content = 'table'"
         ></q-btn>
-        <q-separator vertical inset class="q-mx-md"></q-separator>
+
+        <q-separator vertical
+                     inset
+                     class="q-mx-md"
+        ></q-separator>
+
         <q-btn icon="r_auto_awesome_mosaic"
                outline
                color="grey-8"

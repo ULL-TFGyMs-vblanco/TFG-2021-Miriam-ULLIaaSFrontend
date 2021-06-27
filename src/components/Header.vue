@@ -3,7 +3,10 @@
     <q-header height-hint="98">
       <q-toolbar class="bg-primary text-white">
         <q-toolbar-title class="flex center">
-          <img src="../assets/marca-ull-positivo.svg" alt="Logo ULL" width="110">
+          <img src="../assets/marca-ull-positivo.svg"
+               alt="Logo ULL"
+               width="110"
+          >
         </q-toolbar-title>
         <q-btn dense
                flat
@@ -22,7 +25,9 @@
                class="bg-white"
                flat
         >
-          <img src="../assets/ovirt.png" width="50">
+          <img src="../assets/ovirt.png"
+               width="50"
+          >
         </q-btn>
       </q-toolbar>
     </q-header>

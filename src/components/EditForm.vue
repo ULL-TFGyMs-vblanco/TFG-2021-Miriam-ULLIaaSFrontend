@@ -3,7 +3,7 @@
           @reset="onReset"
           class="q-pa-md column items-center justify-center q-pt-lg"
   >
-    <div class="text-h5 q-py-lg text-center text-size">Crear una nueva máquina virtual</div>
+    <div class="text-h5 q-py-lg text-center text-size">Editar una máquina virtual</div>
     <q-card class="card bg-grey-4">
       <q-card-section class="row items-center justify-center">
         <div class="column card-section">
@@ -13,7 +13,7 @@
                      dense
                      class="bg-white q-pl-sm"
                      v-model="name"
-                     hint="Rellena el nombre"
+                     hint="Modifica el nombre"
                      :rules="[ val => val && val.length > 0 || 'Por favor, rellena el nombre' ]"
             >
               <template v-slot:prepend>
@@ -29,7 +29,7 @@
                      dense
                      class="bg-white q-pl-sm"
                      v-model="description"
-                     hint="Rellena la descripción"
+                     hint="Modifica la descripción"
                      :rules="[ val => val && val.length > 0 || 'Por favor, rellena la descripción' ]"
             >
               <template v-slot:prepend>
@@ -41,36 +41,35 @@
           </div>
           <div class="column q-pt-lg">
             <div class="text-caption">Plantilla</div>
-            <q-select borderless
-                      dense
-                      class="bg-white q-pl-sm"
-                      :options="templateOptions"
-                      v-model="template"
-                      hint="Rellena la plantilla"
+            <q-input borderless
+                     dense
+                     class="bg-white q-pl-sm"
+                     v-model="template"
+                     hint="No se puede modificar la plantilla"
+                     readonly
             >
               <template v-slot:prepend>
                 <q-icon name="content_copy"
                         color="teal"
                 ></q-icon>
               </template>
-            </q-select>
+            </q-input>
           </div>
           <div class="column q-pt-lg">
             <div class="text-caption">Sistema operativo *</div>
-            <q-select borderless
-                      dense
-                      class="bg-white q-pl-sm"
-                      :options="osOptions"
-                      v-model="os"
-                      hint="Rellena el sistema operativo"
-                      :rules="[ val => val && val.length > 0 || 'Por favor, rellena el sistema operativo' ]"
+            <q-input borderless
+                     dense
+                     class="bg-white q-pl-sm"
+                     v-model="os"
+                     hint="No se puede modificar el sistema operativo"
+                     readonly
             >
               <template v-slot:prepend>
                 <q-icon name="settings_suggest"
                         color="teal"
                 ></q-icon>
               </template>
-            </q-select>
+            </q-input>
           </div>
 
           <div class="row justify-between">
@@ -81,7 +80,7 @@
                        class="bg-white q-pl-sm"
                        type="number"
                        v-model="ram"
-                       hint="Rellena la RAM"
+                       hint="Modifica la RAM"
                        :rules="[ val => val && val.length > 0 || 'Por favor, rellena la RAM' ]"
               >
                 <template v-slot:prepend>
@@ -98,12 +97,13 @@
                        class="bg-white q-pl-sm"
                        type="number"
                        v-model="memory"
-                       hint="Rellena el almacenamiento"
+                       hint="Modifica el almacenamiento"
                        :rules="[ val => val && val.length > 0 || 'Por favor, rellena el almacenamiento' ]"
               >
                 <template v-slot:prepend>
                   <q-icon name="storage"
-                          color="teal"></q-icon>
+                          color="teal"
+                  ></q-icon>
                 </template>
               </q-input>
             </div>
@@ -152,66 +152,68 @@ export default {
   data () {
     return {
       virtualMachines: this.$store.getters.virtualMachines,
+      virtualMachine: this.$store.getters.virtualMachine,
       name: '',
       description: '',
       template: '',
       os: '',
       ram: '',
-      memory: '',
-      templateOptions: ['windows-10', 'ubuntu-2004', 'macos-11'],
-      osOptions: ['windows', 'linux', 'macOs']
+      memory: ''
     }
+  },
+
+  mounted () {
+    this.name = this.virtualMachine.name
+    this.description = this.virtualMachine.description
+    this.template = this.virtualMachine.template
+    this.os = this.virtualMachine.os
+    this.ram = this.virtualMachine.ram.split(' ')[0]
+    this.memory = this.virtualMachine.memory.split(' ')[0]
   },
 
   methods: {
     onSubmit () {
-      var date = new Date()
-      date = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()
-      fetch('https://tfg-iaas-vm.app.smartmock.io/vm', {
-        method: 'POST',
-        body: {
-          name: this.name,
-          description: this.description,
-          os: this.os,
-          ram: this.ram + ' GiB',
-          memory: this.memory + ' GiB',
-          template: this.template,
-          created: date
-        },
-        headers: {
-          'Content-type': 'application/json'
-        }
-      })
-        .then(res => {
-          if (res.status === 201) {
-            return res.data
-          }
-        })
-        .then(data => {
-          // this.$store.dispatch('setVirtualMachinesAction', this.virtualMachines.unshift(data.response[0].virtualMachine))
-          // this.$store.dispatch('setVirtualMachinesAction', this.virtualMachines.unshift(data.virtualMachine))
-          console.log(data)
-          window.alert('item created')
-          this.$router.push('/')
-        })
-        .catch(err => {
-          if (err.response.status === 400) {
-            window.alert('invalid input, object invalid')
-          } else if (err.response.status === 409) {
-            window.alert('an existing item already exists')
-          } else {
-            window.alert('error')
-          }
-        })
+      // fetch('https://tfg-iaas-vm.app.smartmock.io/vm/{vmName}', {
+      //   method: 'PUT',
+      //   body: {
+      //     name: this.name,
+      //     description: this.description,
+      //     os: this.os,
+      //     ram: this.ram + ' GiB',
+      //     memory: this.memory + ' GiB',
+      //     template: this.template,
+      //     created: date
+      //   },
+      //   headers: {
+      //     'Content-type': 'application/json'
+      //   }
+      // })
+      //   .then(res => {
+      //     if (res.status === 200) {
+      //       return res.data
+      //     }
+      //   })
+      //   .then(data => {
+      //     console.log(data)
+      //     window.alert('action performed')
+      //     this.$router.push('/')
+      //   })
+      //   .catch(err => {
+      //     if (err.response.status === 400) {
+      //       window.alert('invalid input, object invalid')
+      //     } else if (err.response.status === 404) {
+      //       window.alert('page not found')
+      //     } else {
+      //       window.alert('error')
+      //     }
+      //   })
     },
 
     onReset () {
-      this.name = null
-      this.description = null
-      this.template = null
-      this.os = null
-      this.ram = null
-      this.memory = null
+      this.name = this.virtualMachine.name
+      this.description = this.virtualMachine.description
+      this.ram = this.virtualMachine.ram.split(' ')[0]
+      this.memory = this.virtualMachine.memory.split(' ')[0]
     }
   }
 }

@@ -7,12 +7,19 @@
         <div class="q-pa-sm row items-center q-gutter-md justify-center"
              @click="saveVirtualMachine (virtualMachines[props.row.index])"
         >
-          <img :src="images[props.row.index].url" width="70">
-          <q-badge color="teal" outline>{{ props.row.name }}</q-badge>
+          <img :src="images[props.row.index].url"
+               :alt="props.row.os"
+               width="70"
+          >
+          <q-badge color="teal"
+                   outline
+          >{{ props.row.name }}</q-badge>
         </div>
       </router-link>
     </q-td>
-    <q-td key="ips" :props="props">
+    <q-td key="ips"
+          :props="props"
+    >
       <div class="text-caption text-orange-9 column">
         <span v-for="(ip, index) in props.row.ips"
               :key="index"
@@ -20,7 +27,9 @@
         >{{ ip }}</span>
       </div>
     </q-td>
-    <q-td key="status" :props="props">
+    <q-td key="status"
+          :props="props"
+    >
       <q-toggle v-model="toggleValue[props.row.index]"
                 color="secondary"
                 style="color: #ec899a"

@@ -5,7 +5,9 @@
         <q-btn size="sm"
                title="Encender"
         >
-          <q-icon name="power_settings_new" color="green"></q-icon>
+          <q-icon name="power_settings_new"
+                  color="green"
+          ></q-icon>
           <span class="gt-md q-pl-sm">Encender</span>
         </q-btn>
         <q-btn size="sm"
@@ -17,19 +19,25 @@
         <q-btn size="sm"
                title="Suspender"
         >
-          <q-icon name="battery_alert" color="orange"></q-icon>
+          <q-icon name="battery_alert"
+                  color="orange"
+          ></q-icon>
           <span class="gt-md q-pl-sm">Suspender</span>
         </q-btn>
         <q-btn size="sm"
                title="Reiniciar"
         >
-          <q-icon name="restart_alt" color="teal"></q-icon>
+          <q-icon name="restart_alt"
+                  color="teal"
+          ></q-icon>
           <span class="gt-md q-pl-sm">Reiniciar</span>
         </q-btn>
         <q-btn size="sm"
                title="Apagar"
         >
-          <q-icon name="power_off" color="red"></q-icon>
+          <q-icon name="power_off"
+                  color="red"
+          ></q-icon>
           <span class="gt-md q-pl-sm">Apagar</span>
         </q-btn>
       </div>
@@ -38,7 +46,10 @@
         <div class="row-sm col-md-4 col-lg-3 q-pa-sm">
           <q-card class="bg-amber-1">
             <q-card-section class="q-pb-sm row justify-center">
-              <img :src="image" :alt="virtualMachine.so" width="90%">
+              <img :src="image"
+                   :alt="virtualMachine.os"
+                   width="90%"
+              >
             </q-card-section>
             <q-card-section class="row items-center justify-around">
               <div class="column">
@@ -79,7 +90,7 @@
                            dense
                            color="black"
                   >
-                    <span class="q-py-sm row items-center">{{ virtualMachine.so[0].toUpperCase() + virtualMachine.so.slice(1) }}</span>
+                    <span class="q-py-sm row items-center">{{ virtualMachine.os[0].toUpperCase() + virtualMachine.os.slice(1) }}</span>
                   </q-field>
                 </div>
                 <div class="column q-pt-lg">
@@ -132,12 +143,17 @@
     </div>
 
     <div class="row justify-around buttons q-pb-lg">
-      <q-btn size="sm"
-             title="Editar"
+      <router-link to="/form"
+                   style="text-decoration: none; color: black"
       >
-        <q-icon name="edit" color="blue"></q-icon>
-        <span class="gt-md q-pl-sm">Editar</span>
-      </q-btn>
+        <q-btn size="sm"
+               title="Editar"
+               @click="saveFormType"
+        >
+          <q-icon name="edit" color="blue"></q-icon>
+          <span class="gt-md q-pl-sm">Editar</span>
+        </q-btn>
+      </router-link>
       <q-btn size="sm"
              title="Compartir"
       >
@@ -161,7 +177,13 @@ export default {
   data () {
     return {
       virtualMachine: this.$store.getters.virtualMachine,
-      image: require(`../assets/os/${this.$store.getters.virtualMachine.so}.jpg`)
+      image: require(`../assets/os/${this.$store.getters.virtualMachine.os}.jpg`)
+    }
+  },
+
+  methods: {
+    saveFormType () {
+      this.$store.dispatch('setFormTypeAction', 'edit')
     }
   }
 }
