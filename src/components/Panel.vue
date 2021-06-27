@@ -32,7 +32,6 @@
         <VirtualMachineTable :props="props"
                              :images="images"
                              :toggleValue="toggleValue"
-                             :virtualMachines="virtualMachines.allVirtualMachines"
         ></VirtualMachineTable>
       </template>
 
@@ -43,7 +42,6 @@
         <VirtualMachineCard :props="props"
                             :images="images"
                             :toggleValue="toggleValue"
-                            :virtualMachines="virtualMachines.allVirtualMachines"
                             class="q-pa-sm row justify-center cards"
         ></VirtualMachineCard>
       </template>
@@ -113,7 +111,8 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'ON',
           so: 'linux',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
           created: 'YYYY-MM-DD'
@@ -124,7 +123,8 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'OFF',
           so: 'windows',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
           created: 'YYYY-MM-DD'
@@ -135,7 +135,8 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'ON',
           so: 'macOS',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.1'],
           created: 'YYYY-MM-DD'
@@ -146,7 +147,8 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'SUSPEND',
           so: 'linux',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
           created: 'YYYY-MM-DD'
@@ -157,7 +159,8 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'ON',
           so: 'windows',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
           created: 'YYYY-MM-DD'
@@ -168,7 +171,8 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'OFF',
           so: 'macOS',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
           created: 'YYYY-MM-DD'
@@ -179,7 +183,8 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'OFF',
           so: 'linux',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
           created: 'YYYY-MM-DD'
@@ -190,7 +195,8 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'OFF',
           so: 'windows',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
           created: 'YYYY-MM-DD'
@@ -201,12 +207,17 @@ export default {
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
           status: 'SUSPEND',
           so: 'macOS',
-          memory: '4 GiB',
+          ram: '4 GiB',
+          memory: '20 GiB',
           template: 'ubuntu-1804',
           ips: ['173.16.116.2', '172.16.117.2'],
           created: 'YYYY-MM-DD'
         }
       ]
+    }
+    if (this.$store.getters.virtualMachines === null) {
+      this.$store.dispatch('setVirtualMachinesAction', this.virtualMachines.allVirtualMachines)
+      console.log('hola')
     }
 
     var index = 0

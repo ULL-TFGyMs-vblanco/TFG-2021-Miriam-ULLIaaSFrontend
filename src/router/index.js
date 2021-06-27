@@ -13,6 +13,11 @@ const routes = [
     path: '/vm',
     name: 'VirtualMachine',
     component: () => import('../views/VirtualMachine')
+  },
+  {
+    path: '/form',
+    name: 'Form',
+    component: () => import('../views/Form')
   }
 ]
 

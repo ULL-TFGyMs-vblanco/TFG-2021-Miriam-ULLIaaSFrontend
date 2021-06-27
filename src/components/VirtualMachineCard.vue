@@ -36,8 +36,13 @@ export default {
   props: {
     props: Object,
     images: Array,
-    toggleValue: Array,
-    virtualMachines: Array
+    toggleValue: Array
+  },
+
+  data () {
+    return {
+      virtualMachines: this.$store.getters.virtualMachines
+    }
   },
 
   methods: {

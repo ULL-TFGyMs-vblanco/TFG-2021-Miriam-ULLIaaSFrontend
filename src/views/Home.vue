@@ -1,19 +1,14 @@
 <template>
   <q-page-container>
-    <q-toolbar>
+    <q-toolbar class="q-pt-md">
       <q-btn-group outline>
-<!--        <q-btn outline color="brown" label="First" />-->
-<!--        <q-btn outline color="brown" label="Second" icon-right="watch_later" />-->
-<!--        <q-btn outline color="brown" label="Third" />-->
-        <q-btn class="bg-white"
-               icon="r_table_rows"
+        <q-btn icon="r_table_rows"
                outline
                color="grey-8"
                @click="content = 'table'"
         ></q-btn>
         <q-separator vertical inset class="q-mx-md"></q-separator>
-        <q-btn class="bg-white"
-               icon="r_auto_awesome_mosaic"
+        <q-btn icon="r_auto_awesome_mosaic"
                outline
                color="grey-8"
                @click="content = 'mosaic'"
@@ -21,10 +16,15 @@
       </q-btn-group>
       <q-space></q-space>
 
-      <q-btn flat
-             class="bg-brown-2 text-overline"
-             size="sm"
-      >Nueva máquina virtual</q-btn>
+      <router-link to="/form"
+                   style="text-decoration: none; color: black"
+      >
+        <q-btn flat
+               class="bg-brown-2 text-overline"
+               size="sm"
+               @click="saveFormType"
+        >Nueva máquina virtual</q-btn>
+      </router-link>
     </q-toolbar>
 
     <Panel :content="content"></Panel>
@@ -44,6 +44,12 @@ export default {
   data () {
     return {
       content: 'table'
+    }
+  },
+
+  methods: {
+    saveFormType () {
+      this.$store.dispatch('setFormTypeAction', 'create')
     }
   }
 }

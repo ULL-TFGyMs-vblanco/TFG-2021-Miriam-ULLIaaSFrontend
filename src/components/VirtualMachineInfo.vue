@@ -2,23 +2,33 @@
   <div class="row justify-center q-pt-lg">
     <div class="q-pa-sm row items-center q-gutter-md justify-end">
       <div class="row justify-around buttons">
-        <q-btn size="sm" title="Encender">
+        <q-btn size="sm"
+               title="Encender"
+        >
           <q-icon name="power_settings_new" color="green"></q-icon>
           <span class="gt-md q-pl-sm">Encender</span>
         </q-btn>
-        <q-btn size="sm" title="Consola">
+        <q-btn size="sm"
+               title="Consola"
+        >
           <q-icon color="grey">>_</q-icon>
           <span class="gt-md q-pl-sm">Consola</span>
         </q-btn>
-        <q-btn size="sm" title="Suspender">
+        <q-btn size="sm"
+               title="Suspender"
+        >
           <q-icon name="battery_alert" color="orange"></q-icon>
           <span class="gt-md q-pl-sm">Suspender</span>
         </q-btn>
-        <q-btn size="sm" title="Reiniciar">
+        <q-btn size="sm"
+               title="Reiniciar"
+        >
           <q-icon name="restart_alt" color="teal"></q-icon>
           <span class="gt-md q-pl-sm">Reiniciar</span>
         </q-btn>
-        <q-btn size="sm" title="Apagar">
+        <q-btn size="sm"
+               title="Apagar"
+        >
           <q-icon name="power_off" color="red"></q-icon>
           <span class="gt-md q-pl-sm">Apagar</span>
         </q-btn>
@@ -73,7 +83,16 @@
                   </q-field>
                 </div>
                 <div class="column q-pt-lg">
-                  <div class="text-caption">Memoria</div>
+                  <div class="text-caption">RAM</div>
+                  <q-field filled
+                           dense
+                           color="black"
+                  >
+                    <span class="q-py-sm row items-center">{{ virtualMachine.ram }}</span>
+                  </q-field>
+                </div>
+                <div class="column q-pt-lg">
+                  <div class="text-caption">Almacenamiento</div>
                   <q-field filled
                            dense
                            color="black"
@@ -113,15 +132,21 @@
     </div>
 
     <div class="row justify-around buttons q-pb-lg">
-      <q-btn size="sm" title="Editar">
+      <q-btn size="sm"
+             title="Editar"
+      >
         <q-icon name="edit" color="blue"></q-icon>
         <span class="gt-md q-pl-sm">Editar</span>
       </q-btn>
-      <q-btn size="sm" title="Compartir">
+      <q-btn size="sm"
+             title="Compartir"
+      >
         <q-icon name="share" color="grey"></q-icon>
         <span class="gt-md q-pl-sm">Compartir</span>
       </q-btn>
-      <q-btn size="sm" title="Eliminar">
+      <q-btn size="sm"
+             title="Eliminar"
+      >
         <q-icon name="delete" color="red"></q-icon>
         <span class="gt-md q-pl-sm">Eliminar</span>
       </q-btn>
