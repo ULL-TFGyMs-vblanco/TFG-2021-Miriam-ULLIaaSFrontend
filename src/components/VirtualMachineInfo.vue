@@ -4,6 +4,7 @@
       <div class="row justify-around buttons">
         <q-btn size="sm"
                title="Encender"
+               @click="turnOn"
         >
           <q-icon name="power_settings_new"
                   color="green"
@@ -12,12 +13,14 @@
         </q-btn>
         <q-btn size="sm"
                title="Consola"
+               @click="showConsole"
         >
           <q-icon color="grey">>_</q-icon>
           <span class="gt-md q-pl-sm">Consola</span>
         </q-btn>
         <q-btn size="sm"
                title="Suspender"
+               @click="suspend"
         >
           <q-icon name="battery_alert"
                   color="orange"
@@ -26,6 +29,7 @@
         </q-btn>
         <q-btn size="sm"
                title="Reiniciar"
+               @click="reboot"
         >
           <q-icon name="restart_alt"
                   color="teal"
@@ -34,6 +38,7 @@
         </q-btn>
         <q-btn size="sm"
                title="Apagar"
+               @click="turnOff"
         >
           <q-icon name="power_off"
                   color="red"
@@ -156,12 +161,13 @@
       </router-link>
       <q-btn size="sm"
              title="Compartir"
+             @click="share"
       >
         <q-icon name="share" color="grey"></q-icon>
         <span class="gt-md q-pl-sm">Compartir</span>
       </q-btn>
       <q-btn size="sm"
-             title="Eliminar"
+             title="deleteVM"
       >
         <q-icon name="delete" color="red"></q-icon>
         <span class="gt-md q-pl-sm">Eliminar</span>
@@ -184,6 +190,34 @@ export default {
   methods: {
     saveFormType () {
       this.$store.dispatch('setFormTypeAction', 'edit')
+    },
+
+    turnOn () {
+      window.alert('action performed - turn on')
+    },
+
+    showConsole () {
+      window.alert('action performed - show console')
+    },
+
+    suspend () {
+      window.alert('action performed - suspend')
+    },
+
+    reboot () {
+      window.alert('action performed - reboot')
+    },
+
+    turnOff () {
+      window.alert('action performed - turn off')
+    },
+
+    share () {
+      window.alert('action performed - share')
+    },
+
+    deleteVM () {
+      window.alert('action performed - delete')
     }
   }
 }
@@ -196,11 +230,7 @@ $tablet-width: 768px
 .buttons
   width: 100%
 
-@media (min-width: #{$desktop-width})
-  .buttons
-    width: 50%
-
 @media (min-width: #{$tablet-width})
   .buttons
-    width: 40%
+    width: 50%
 </style>

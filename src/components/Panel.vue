@@ -215,6 +215,13 @@ export default {
         }
       ]
     }
+
+    // await fetch('https://tfg-iaas-vm.app.smartmock.io/api/inventory')
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     this.virtualMachines = data
+    //   })
+
     if (this.$store.getters.virtualMachines === null) {
       this.$store.dispatch('setVirtualMachinesAction', this.virtualMachines.allVirtualMachines)
       console.log('hola')
@@ -232,11 +239,6 @@ export default {
       this.toggleValue.push(vm.status === 'ON')
       index++
     })
-  // await fetch('https://tfg-iaas-vm.app.smartmock.io/inventory')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     this.virtualMachines = data
-  //   })
   }
 }
 </script>

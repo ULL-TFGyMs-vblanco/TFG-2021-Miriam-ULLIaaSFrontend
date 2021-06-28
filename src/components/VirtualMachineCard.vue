@@ -24,6 +24,7 @@
           <q-toggle v-model="toggleValue[props.row.index]"
                     color="secondary"
                     icon="power_settings_new"
+                    @input="turnVirtualMachine (toggleValue[props.row.index])"
           ></q-toggle>
         </div>
       </q-card-section>
@@ -50,6 +51,14 @@ export default {
   methods: {
     saveVirtualMachine (vm) {
       this.$store.dispatch('setVirtualMachineAction', vm)
+    },
+
+    turnVirtualMachine (toggleValue) {
+      if (toggleValue) {
+        window.alert('action performed - turn on')
+      } else {
+        window.alert('action performed - turn off')
+      }
     }
   }
 }
