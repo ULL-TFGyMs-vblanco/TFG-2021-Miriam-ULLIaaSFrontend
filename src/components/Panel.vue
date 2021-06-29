@@ -1,15 +1,19 @@
 <template>
-  <div class="q-pa-md column items-center q-gutter-md justify-center">
+  <div class="q-pa-md column items-center q-gutter-md justify-center"
+       id="div-1"
+  >
     <q-table class="my-table"
              :data="data"
              :columns="columns"
              row-key="name"
              :filter="filter"
              :grid="content === 'mosaic'"
+             id="q-table"
     >
       <template v-slot:top>
         <div style="width: 100%"
              class="row justify-end"
+             id="div-2"
         >
           <q-input filled
                    dense
@@ -20,7 +24,8 @@
                    class="searchInput"
           >
             <template v-slot:append>
-              <q-icon name="search"></q-icon>
+              <q-icon name="search"
+              id="search"></q-icon>
             </template>
           </q-input>
         </div>

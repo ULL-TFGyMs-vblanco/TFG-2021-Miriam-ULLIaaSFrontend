@@ -1,67 +1,105 @@
 <template>
-  <div class="row justify-center q-pt-lg">
-    <div class="q-pa-sm row items-center q-gutter-md justify-end">
-      <div class="row justify-around buttons">
+  <div class="row justify-center q-pt-lg"
+       id="div-1"
+  >
+    <div class="q-pa-sm row items-center q-gutter-md justify-end"
+         id="div-2"
+    >
+      <div class="row justify-around buttons"
+           id="div-3"
+      >
         <q-btn size="sm"
                title="Encender"
                @click="turnOn"
+               id="q-btn-1"
         >
           <q-icon name="power_settings_new"
                   color="green"
+                  id="q-icon-1"
           ></q-icon>
-          <span class="gt-md q-pl-sm">Encender</span>
+          <span class="gt-md q-pl-sm"
+                id="span-1"
+          >Encender</span>
         </q-btn>
         <q-btn size="sm"
                title="Consola"
                @click="showConsole"
+               id="q-btn-2"
         >
-          <q-icon color="grey">>_</q-icon>
-          <span class="gt-md q-pl-sm">Consola</span>
+          <q-icon color="grey"
+                  id="q-icon-2"
+          >>_</q-icon>
+          <span class="gt-md q-pl-sm"
+                id="span-2"
+          >Consola</span>
         </q-btn>
         <q-btn size="sm"
                title="Suspender"
                @click="suspend"
+               id="q-btn-3"
         >
           <q-icon name="battery_alert"
                   color="orange"
+                  id="q-icon-3"
           ></q-icon>
-          <span class="gt-md q-pl-sm">Suspender</span>
+          <span class="gt-md q-pl-sm"
+                id="span-3"
+          >Suspender</span>
         </q-btn>
         <q-btn size="sm"
                title="Reiniciar"
                @click="reboot"
+               id="q-btn-4"
         >
           <q-icon name="restart_alt"
                   color="teal"
+                  id="q-icon-4"
           ></q-icon>
-          <span class="gt-md q-pl-sm">Reiniciar</span>
+          <span class="gt-md q-pl-sm"
+                id="span-4"
+          >Reiniciar</span>
         </q-btn>
         <q-btn size="sm"
                title="Apagar"
                @click="turnOff"
+               id="q-btn-5"
         >
           <q-icon name="power_off"
                   color="red"
+                  id="q-icon-5"
           ></q-icon>
-          <span class="gt-md q-pl-sm">Apagar</span>
+          <span class="gt-md q-pl-sm"
+                id="span-5"
+          >Apagar</span>
         </q-btn>
       </div>
 
-      <div class="q-pa-md row justify-center">
+      <div class="q-pa-md row justify-center"
+           id="div-4"
+      >
         <div class="row-sm col-md-4 col-lg-3 q-pa-sm">
           <q-card class="bg-amber-1">
-            <q-card-section class="q-pb-sm row justify-center">
+            <q-card-section class="q-pb-sm row justify-center"
+                            id="q-card-section-1"
+            >
               <img :src="image"
                    :alt="virtualMachine.os"
                    width="90%"
+                   id="img-1"
               >
             </q-card-section>
-            <q-card-section class="row items-center justify-around">
+            <q-card-section class="row items-center justify-around"
+                            id="q-card-section-2"
+            >
               <div class="column">
-                <div class="text-h5 q-mt-sm q-mb-xs">{{ virtualMachine.name }}</div>
-                <div class="text-overline text-orange-9 column">ID#{{ virtualMachine.id }}</div>
+                <div class="text-h5 q-mt-sm q-mb-xs"
+                     id="div-5"
+                >{{ virtualMachine.name }}</div>
+                <div class="text-overline text-orange-9 column"
+                     id="div-6"
+                >ID#{{ virtualMachine.id }}</div>
               </div>
-              <q-badge>{{ virtualMachine.status }}</q-badge>
+              <q-badge id="q-badge">{{ virtualMachine.status }}</q-badge>
             </q-card-section>
           </q-card>
         </div>
@@ -71,73 +109,106 @@
             <q-card-section class="row items-center justify-center">
               <div class="column">
                 <div class="column">
-                  <div class="text-caption">Descripción</div>
+                  <div class="text-caption"
+                       id="div-7"
+                  >Descripción</div>
                   <q-field filled
                            dense
                            color="black"
                            class="row justify-center"
                   >
-                    <span class="q-py-sm row items-center">{{ virtualMachine.description }}</span>
+                    <span class="q-py-sm row items-center"
+                          id="span-6"
+                    >{{ virtualMachine.description }}</span>
                   </q-field>
                 </div>
                 <div class="column q-pt-lg">
-                  <div class="text-caption">Plantilla</div>
+                  <div class="text-caption"
+                       id="div-8"
+                  >Plantilla</div>
                   <q-field filled
                            dense
                            color="black"
+                           class="q-field"
                   >
-                    <span class="q-py-sm row items-center">{{ virtualMachine.template }}</span>
+                    <span class="q-py-sm row items-center"
+                          id="span-7"
+                    >{{ virtualMachine.template }}</span>
                   </q-field>
                 </div>
                 <div class="column q-pt-lg">
-                  <div class="text-caption">Sistema operativo</div>
+                  <div class="text-caption"
+                       id="div-9"
+                  >Sistema operativo</div>
                   <q-field filled
                            dense
                            color="black"
+                           class="q-field"
                   >
-                    <span class="q-py-sm row items-center">{{ virtualMachine.os[0].toUpperCase() + virtualMachine.os.slice(1) }}</span>
+                    <span class="q-py-sm row items-center"
+                          id="span-8"
+                    >{{ virtualMachine.os[0].toUpperCase() + virtualMachine.os.slice(1) }}</span>
                   </q-field>
                 </div>
                 <div class="column q-pt-lg">
-                  <div class="text-caption">RAM</div>
+                  <div class="text-caption"
+                       id="div-10"
+                  >RAM</div>
                   <q-field filled
                            dense
                            color="black"
+                           class="q-field"
                   >
-                    <span class="q-py-sm row items-center">{{ virtualMachine.ram }}</span>
+                    <span class="q-py-sm row items-center"
+                          id="span-9"
+                    >{{ virtualMachine.ram }}</span>
                   </q-field>
                 </div>
                 <div class="column q-pt-lg">
-                  <div class="text-caption">Almacenamiento</div>
+                  <div class="text-caption"
+                       id="div-11"
+                  >Almacenamiento</div>
                   <q-field filled
                            dense
                            color="black"
+                           class="q-field"
                   >
-                    <span class="q-py-sm row items-center">{{ virtualMachine.memory }}</span>
+                    <span class="q-py-sm row items-center"
+                          id="span-10"
+                    >{{ virtualMachine.memory }}</span>
                   </q-field>
                 </div>
                 <div class="column q-pt-lg">
-                  <div class="text-caption">IPs</div>
+                  <div class="text-caption"
+                       id="div-12"
+                  >IPs</div>
                   <q-field filled
                            dense
                            color="black"
+                           class="q-field"
                   >
                     <div class="q-py-sm column">
                       <span v-for="(ip, index) in virtualMachine.ips"
                             :key="index"
                             :ip="ip"
                             class="items-center"
+                            id="span-11"
                       >{{ ip }}</span>
                     </div>
                   </q-field>
                 </div>
                 <div class="column q-pt-lg">
-                  <div class="text-caption">Fecha de creación</div>
+                  <div class="text-caption"
+                       id="div-13"
+                  >Fecha de creación</div>
                   <q-field filled
                            dense
                            color="black"
+                           class="q-field"
                   >
-                    <span class="q-py-sm row items-center">{{ virtualMachine.created }}</span>
+                    <span class="q-py-sm row items-center"
+                          id="span-12"
+                    >{{ virtualMachine.created }}</span>
                   </q-field>
                 </div>
               </div>
@@ -150,27 +221,46 @@
     <div class="row justify-around buttons q-pb-lg">
       <router-link to="/form"
                    style="text-decoration: none; color: black"
+                   id="router-link"
       >
         <q-btn size="sm"
                title="Editar"
                @click="saveFormType"
+               id="q-btn-6"
         >
-          <q-icon name="edit" color="blue"></q-icon>
-          <span class="gt-md q-pl-sm">Editar</span>
+          <q-icon name="edit"
+                  color="blue"
+                  id="q-icon-6"
+          ></q-icon>
+          <span class="gt-md q-pl-sm"
+                id="span-13"
+          >Editar</span>
         </q-btn>
       </router-link>
       <q-btn size="sm"
              title="Compartir"
              @click="share"
+             id="q-btn-7"
       >
-        <q-icon name="share" color="grey"></q-icon>
-        <span class="gt-md q-pl-sm">Compartir</span>
+        <q-icon name="share"
+                color="grey"
+                id="q-icon-7"
+        ></q-icon>
+        <span class="gt-md q-pl-sm"
+              id="span-14"
+        >Compartir</span>
       </q-btn>
       <q-btn size="sm"
-             title="deleteVM"
+             title="Eliminar"
+             id="q-btn-8"
       >
-        <q-icon name="delete" color="red"></q-icon>
-        <span class="gt-md q-pl-sm">Eliminar</span>
+        <q-icon name="delete"
+                color="red"
+                id="q-icon-8"
+        ></q-icon>
+        <span class="gt-md q-pl-sm"
+              id="span-15"
+        >Eliminar</span>
       </q-btn>
     </div>
   </div>

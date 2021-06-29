@@ -1,24 +1,9 @@
-# ull-iaas-frontend
+# Frontend para la gestión de las Máquinas Virtuales en el IaaS de la ULL
+
+Este repositorio contiene el TFG Frontend para la gestión de las Máquinas Virtuales en el IaaS de la Universidad de La Laguna.
 
 ## Project setup
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
