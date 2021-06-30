@@ -20,6 +20,11 @@ const localVue = createLocalVue()
 localVue.use(Quasar, { components })
 localVue.use(Vuex)
 
+jest.mock('@/components/EditForm', () => ({
+  name: 'EditForm',
+  render: h => h('div')
+}))
+
 describe('Form', () => {
   const wrapper = shallowMount(Form, {
     localVue,

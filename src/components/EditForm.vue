@@ -204,6 +204,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'EditForm',
 
@@ -231,40 +233,46 @@ export default {
 
   methods: {
     onSubmit () {
-      // fetch('https://tfg-iaas-vm.app.smartmock.io/vm/{vmName}', {
-      //   method: 'PUT',
-      //   body: {
-      //     name: this.name,
-      //     description: this.description,
-      //     os: this.os,
-      //     ram: this.ram + ' GiB',
-      //     memory: this.memory + ' GiB',
-      //     template: this.template,
-      //     created: date
-      //   },
-      //   headers: {
-      //     'Content-type': 'application/json'
-      //   }
-      // })
-      //   .then(res => {
-      //     if (res.status === 200) {
-      //       return res.data
-      //     }
-      //   })
-      //   .then(data => {
-      //     console.log(data)
-      //     window.alert('action performed')
-      //     this.$router.push('/')
-      //   })
-      //   .catch(err => {
-      //     if (err.response.status === 400) {
-      //       window.alert('invalid input, object invalid')
-      //     } else if (err.response.status === 404) {
-      //       window.alert('page not found')
-      //     } else {
-      //       window.alert('error')
-      //     }
-      //   })
+      axios.put(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${this.name}`, {
+        action: 'update item',
+        virtualMachine: {
+          id: this.virtualMachine.id,
+          name: this.name,
+          description: this.description,
+          status: 'OFF',
+          template: this.template,
+          os: this.os,
+          ram: this.ram,
+          memory: this.memory,
+          created: this.virtualMachine.created
+        }
+      })
+        .then(res => {
+          if (res.status === 200) {
+            return res.data
+          }
+        })
+        .then(data => {
+          const object = JSON.parse(data.replace(/'/g, '"'))
+          window.alert(object.response)
+
+          for (var i = 0; i < this.virtualMachines.length; i++) {
+            if (this.virtualMachines[i].id === this.virtualMachine.id) {
+              this.virtualMachines.splice(i, 1, object.virtualMachine)
+            }
+          }
+
+          this.$router.push('/')
+        })
+        .catch(error => {
+          if (error.status === 400) {
+            window.alert('invalid input, object invalid')
+          } else if (error.status === 404) {
+            window.alert('page not found')
+          } else {
+            window.alert(`error: ${error}`)
+          }
+        })
     },
 
     onReset () {

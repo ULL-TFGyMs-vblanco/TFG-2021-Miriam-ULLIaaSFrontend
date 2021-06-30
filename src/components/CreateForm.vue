@@ -204,6 +204,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'CreateForm',
 
@@ -225,19 +227,17 @@ export default {
     onSubmit () {
       var date = new Date()
       date = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear()
-      fetch('https://tfg-iaas-vm.app.smartmock.io/vm', {
-        method: 'POST',
-        body: {
+
+      axios.post('https://tfg-iaas-vm.app.smartmock.io/api/vm', {
+        virtualMachine: {
           name: this.name,
           description: this.description,
-          os: this.os,
-          ram: this.ram + ' GiB',
-          memory: this.memory + ' GiB',
+          status: 'OFF',
           template: this.template,
+          os: this.os,
+          ram: this.ram,
+          memory: this.memory,
           created: date
-        },
-        headers: {
-          'Content-type': 'application/json'
         }
       })
         .then(res => {
@@ -246,19 +246,20 @@ export default {
           }
         })
         .then(data => {
-          // this.$store.dispatch('setVirtualMachinesAction', this.virtualMachines.unshift(data.response[0].virtualMachine))
-          // this.$store.dispatch('setVirtualMachinesAction', this.virtualMachines.unshift(data.virtualMachine))
-          console.log(data)
-          window.alert('item created')
+          const object = JSON.parse(data.replace(/'/g, '"'))
+          window.alert(object.response)
+
+          this.virtualMachines.unshift(object.virtualMachine)
+
           this.$router.push('/')
         })
-        .catch(err => {
-          if (err.response.status === 400) {
+        .catch(error => {
+          if (error.status === 400) {
             window.alert('invalid input, object invalid')
-          } else if (err.response.status === 409) {
-            window.alert('an existing item already exists')
+          } else if (error.status === 404) {
+            window.alert('page not found')
           } else {
-            window.alert('error')
+            window.alert(`error: ${error}`)
           }
         })
     },

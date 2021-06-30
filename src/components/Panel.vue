@@ -13,7 +13,6 @@
       <template v-slot:top>
         <div style="width: 100%"
              class="row justify-end"
-             id="div-2"
         >
           <q-input filled
                    dense
@@ -57,6 +56,7 @@
 <script>
 import VirtualMachineTable from './VirtualMachineTable'
 import VirtualMachineCard from './VirtualMachineCard'
+import axios from 'axios'
 
 export default {
   name: 'Panel',
@@ -106,134 +106,144 @@ export default {
   },
 
   async beforeMount () {
-    this.virtualMachines = {
-      method: 'GET',
-      description: 'get the inventory of an user',
-      allVirtualMachines: [
-        {
-          id: '4328',
-          name: 'SyTW-BackEND',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'ON',
-          os: 'linux',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD'
-        },
-        {
-          id: '4312',
-          name: 'SyTW-BackEND2',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'OFF',
-          os: 'windows',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD'
-        },
-        {
-          id: '4321',
-          name: 'SyTW-BackEND3',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'ON',
-          os: 'macOS',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.1'],
-          created: 'YYYY-MM-DD'
-        },
-        {
-          id: '4328',
-          name: 'SyTW-BackEND4',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'SUSPEND',
-          os: 'linux',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD'
-        },
-        {
-          id: '4312',
-          name: 'SyTW-BackEND5',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'ON',
-          os: 'windows',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD'
-        },
-        {
-          id: '4321',
-          name: 'SyTW-BackEND6',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'OFF',
-          os: 'macOS',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD'
-        },
-        {
-          id: '4328',
-          name: 'SyTW-BackEND7',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'OFF',
-          os: 'linux',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD'
-        },
-        {
-          id: '4312',
-          name: 'SyTW-BackEND8',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'OFF',
-          os: 'windows',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD'
-        },
-        {
-          id: '4321',
-          name: 'SyTW-BackEND9',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
-          status: 'SUSPEND',
-          os: 'macOS',
-          ram: '4 GiB',
-          memory: '20 GiB',
-          template: 'ubuntu-1804',
-          ips: ['173.16.116.2', '172.16.117.2'],
-          created: 'YYYY-MM-DD'
-        }
-      ]
-    }
-
-    // await fetch('https://tfg-iaas-vm.app.smartmock.io/api/inventory')
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     this.virtualMachines = data
-    //   })
+    // this.virtualMachines = {
+    //   method: 'GET',
+    //   description: 'get the inventory of an user',
+    //   allVirtualMachines: [
+    //     {
+    //       id: '4328',
+    //       name: 'SyTW-BackEND',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'ON',
+    //       os: 'linux',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.2'],
+    //       created: 'YYYY-MM-DD'
+    //     },
+    //     {
+    //       id: '4312',
+    //       name: 'SyTW-BackEND2',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'OFF',
+    //       os: 'windows',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.2'],
+    //       created: 'YYYY-MM-DD'
+    //     },
+    //     {
+    //       id: '4321',
+    //       name: 'SyTW-BackEND3',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'ON',
+    //       os: 'macOS',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.1'],
+    //       created: 'YYYY-MM-DD'
+    //     },
+    //     {
+    //       id: '4328',
+    //       name: 'SyTW-BackEND4',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'SUSPEND',
+    //       os: 'linux',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.2'],
+    //       created: 'YYYY-MM-DD'
+    //     },
+    //     {
+    //       id: '4312',
+    //       name: 'SyTW-BackEND5',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'ON',
+    //       os: 'windows',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.2'],
+    //       created: 'YYYY-MM-DD'
+    //     },
+    //     {
+    //       id: '4321',
+    //       name: 'SyTW-BackEND6',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'OFF',
+    //       os: 'macOS',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.2'],
+    //       created: 'YYYY-MM-DD'
+    //     },
+    //     {
+    //       id: '4328',
+    //       name: 'SyTW-BackEND7',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'OFF',
+    //       os: 'linux',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.2'],
+    //       created: 'YYYY-MM-DD'
+    //     },
+    //     {
+    //       id: '4312',
+    //       name: 'SyTW-BackEND8',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'OFF',
+    //       os: 'windows',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.2'],
+    //       created: 'YYYY-MM-DD'
+    //     },
+    //     {
+    //       id: '4321',
+    //       name: 'SyTW-BackEND9',
+    //       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    //       status: 'SUSPEND',
+    //       os: 'macOS',
+    //       ram: '4 GiB',
+    //       memory: '20 GiB',
+    //       template: 'ubuntu-1804',
+    //       ips: ['173.16.116.2', '172.16.117.2'],
+    //       created: 'YYYY-MM-DD'
+    //     }
+    //   ]
+    // }
 
     if (this.$store.getters.virtualMachines === null) {
-      this.$store.dispatch('setVirtualMachinesAction', this.virtualMachines.allVirtualMachines)
-      // console.log('hola')
+      await axios.get('https://tfg-iaas-vm.app.smartmock.io/api/inventory')
+        .then(res => {
+          if (res.status === 200) {
+            return res.data
+          }
+        })
+        .then(data => {
+          this.$store.dispatch('setVirtualMachinesAction', JSON.parse(data.replace(/'/g, '"')).allVirtualMachines)
+        })
+        .catch(error => {
+          if (error.status === 400) {
+            window.alert('invalid input, object invalid')
+          } else {
+            window.alert(`error: ${error}`)
+          }
+        })
     }
 
+    this.virtualMachines = this.$store.getters.virtualMachines
+
     var index = 0
-    this.virtualMachines.allVirtualMachines.forEach(vm => {
+    this.virtualMachines.forEach(vm => {
       this.images.push({ url: require(`../assets/os/${vm.os}.jpg`) })
       this.data.push({
         name: vm.name,

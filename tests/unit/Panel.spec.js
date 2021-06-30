@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import * as All from 'quasar'
 
@@ -20,18 +20,8 @@ const localVue = createLocalVue()
 localVue.use(Quasar, { components })
 localVue.use(Vuex)
 
-jest.mock('@/components/VirtualMachineTable', () => ({
-  name: 'VirtualMachineTable',
-  render: h => h('div')
-}))
-
-jest.mock('@/components/VirtualMachineCard', () => ({
-  name: 'VirtualMachineCard',
-  render: h => h('div')
-}))
-
 describe('Panel', () => {
-  const wrapper = mount(Panel, {
+  const wrapper = shallowMount(Panel, {
     localVue,
     store
   })
@@ -48,22 +38,23 @@ describe('Panel', () => {
     expect(wrapper.find('#q-table').classes()).toContain('my-table')
   })
 
-  it('correct div-2 classes', async () => {
-    expect(wrapper.find('#div-2').classes()).toEqual(['row', 'justify-end'])
+  it('contains VirtualMachineTable component', async () => {
+    expect(wrapper.findComponent(VirtualMachineTable).selector.name).toBe('VirtualMachineTable')
   })
 
-  it('contains VirtualMachineTable component', async () => {
-    await wrapper.setProps({
-      content: 'table'
-    })
-    expect(wrapper.findComponent(VirtualMachineTable).exists()).toBe(true)
+  it('correct VirtualMachineTable component props', async () => {
+    expect(wrapper.findComponent(VirtualMachineTable).selector.props.props).toBeTruthy()
+    expect(wrapper.findComponent(VirtualMachineTable).selector.props.images).toBeTruthy()
+    expect(wrapper.findComponent(VirtualMachineTable).selector.props.toggleValue).toBeTruthy()
   })
 
   it('contains VirtualMachineCard component', async () => {
-    await wrapper.setProps({
-      content: 'mosaic'
-    })
+    expect(wrapper.findComponent(VirtualMachineCard).selector.name).toBe('VirtualMachineCard')
+  })
 
-    expect(wrapper.findComponent(VirtualMachineCard).exists()).toBe(true)
+  it('correct VirtualMachineTable component props', async () => {
+    expect(wrapper.findComponent(VirtualMachineTable).selector.props.props).toBeTruthy()
+    expect(wrapper.findComponent(VirtualMachineTable).selector.props.images).toBeTruthy()
+    expect(wrapper.findComponent(VirtualMachineTable).selector.props.toggleValue).toBeTruthy()
   })
 })

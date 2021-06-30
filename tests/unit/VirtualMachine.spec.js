@@ -16,6 +16,11 @@ const components = Object.keys(All).reduce((object, key) => {
 const localVue = createLocalVue()
 localVue.use(Quasar, { components })
 
+jest.mock('@/components/VirtualMachineInfo', () => ({
+  name: 'VirtualMachineInfo',
+  render: h => h('div')
+}))
+
 describe('VirtualMachine', () => {
   const wrapper = shallowMount(VirtualMachine, {
     localVue

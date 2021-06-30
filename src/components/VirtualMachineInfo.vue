@@ -237,9 +237,9 @@
           >Editar</span>
         </q-btn>
       </router-link>
+      <div>
       <q-btn size="sm"
              title="Compartir"
-             @click="share"
              id="q-btn-7"
       >
         <q-icon name="share"
@@ -249,9 +249,20 @@
         <span class="gt-md q-pl-sm"
               id="span-14"
         >Compartir</span>
+        <q-popup-edit v-model="sharedTo">
+          <q-input v-model="sharedTo"
+                   dense
+                   autofocus
+                   counter
+                   @keyup.enter="share"
+                   id="q-input"
+          ></q-input>
+        </q-popup-edit>
       </q-btn>
+      </div>
       <q-btn size="sm"
              title="Eliminar"
+             @click="deleteVM"
              id="q-btn-8"
       >
         <q-icon name="delete"
@@ -267,13 +278,17 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'VirtualMachineInfo',
 
   data () {
     return {
+      virtualMachines: this.$store.getters.virtualMachines,
       virtualMachine: this.$store.getters.virtualMachine,
-      image: require(`../assets/os/${this.$store.getters.virtualMachine.os}.jpg`)
+      image: require(`../assets/os/${this.$store.getters.virtualMachine.os}.jpg`),
+      sharedTo: null
     }
   },
 
@@ -283,7 +298,46 @@ export default {
     },
 
     turnOn () {
-      window.alert('action performed - turn on')
+      axios.put(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${this.virtualMachine.name}`, {
+        action: 'turn on',
+        virtualMachine: {
+          id: this.virtualMachine.id,
+          name: this.virtualMachine.name,
+          description: this.virtualMachine.description,
+          status: 'ON',
+          template: this.virtualMachine.template,
+          os: this.virtualMachine.os,
+          ram: this.virtualMachine.ram,
+          memory: this.virtualMachine.memory,
+          created: this.virtualMachine.created
+        }
+      })
+        .then(res => {
+          if (res.status === 200) {
+            return res.data
+          }
+        })
+        .then(data => {
+          const object = JSON.parse(data.replace(/'/g, '"'))
+          window.alert(object.response)
+
+          for (var i = 0; i < this.virtualMachines.length; i++) {
+            if (this.virtualMachines[i].id === this.virtualMachine.id) {
+              this.virtualMachines.splice(i, 1, object.virtualMachine)
+            }
+          }
+
+          this.$router.push('/')
+        })
+        .catch(error => {
+          if (error.status === 400) {
+            window.alert('invalid input, object invalid')
+          } else if (error.status === 404) {
+            window.alert('page not found')
+          } else {
+            window.alert(`error: ${error}`)
+          }
+        })
     },
 
     showConsole () {
@@ -291,23 +345,166 @@ export default {
     },
 
     suspend () {
-      window.alert('action performed - suspend')
+      axios.put(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${this.virtualMachine.name}`, {
+        action: 'suspend',
+        virtualMachine: {
+          id: this.virtualMachine.id,
+          name: this.virtualMachine.name,
+          description: this.virtualMachine.description,
+          status: 'SUSPEND',
+          template: this.virtualMachine.template,
+          os: this.virtualMachine.os,
+          ram: this.virtualMachine.ram,
+          memory: this.virtualMachine.memory,
+          created: this.virtualMachine.created
+        }
+      })
+        .then(res => {
+          if (res.status === 200) {
+            return res.data
+          }
+        })
+        .then(data => {
+          const object = JSON.parse(data.replace(/'/g, '"'))
+          window.alert(object.response)
+
+          for (var i = 0; i < this.virtualMachines.length; i++) {
+            if (this.virtualMachines[i].id === this.virtualMachine.id) {
+              this.virtualMachines.splice(i, 1, object.virtualMachine)
+            }
+          }
+
+          this.$router.push('/')
+        })
+        .catch(error => {
+          if (error.status === 400) {
+            window.alert('invalid input, object invalid')
+          } else if (error.status === 404) {
+            window.alert('page not found')
+          } else {
+            window.alert(`error: ${error}`)
+          }
+        })
     },
 
     reboot () {
-      window.alert('action performed - reboot')
+      axios.put(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${this.virtualMachine.name}`, {
+        action: 'reboot',
+        virtualMachine: {
+          id: this.virtualMachine.id,
+          name: this.virtualMachine.name,
+          description: this.virtualMachine.description,
+          status: 'ON',
+          template: this.virtualMachine.template,
+          os: this.virtualMachine.os,
+          ram: this.virtualMachine.ram,
+          memory: this.virtualMachine.memory,
+          created: this.virtualMachine.created
+        }
+      })
+        .then(res => {
+          if (res.status === 200) {
+            return res.data
+          }
+        })
+        .then(data => {
+          const object = JSON.parse(data.replace(/'/g, '"'))
+          window.alert(object.response)
+
+          for (var i = 0; i < this.virtualMachines.length; i++) {
+            if (this.virtualMachines[i].id === this.virtualMachine.id) {
+              this.virtualMachines.splice(i, 1, object.virtualMachine)
+            }
+          }
+
+          this.$router.push('/')
+        })
+        .catch(error => {
+          if (error.status === 400) {
+            window.alert('invalid input, object invalid')
+          } else if (error.status === 404) {
+            window.alert('page not found')
+          } else {
+            window.alert(`error: ${error}`)
+          }
+        })
     },
 
     turnOff () {
-      window.alert('action performed - turn off')
+      axios.put(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${this.virtualMachine.name}`, {
+        action: 'turn off',
+        virtualMachine: {
+          id: this.virtualMachine.id,
+          name: this.virtualMachine.name,
+          description: this.virtualMachine.description,
+          status: 'OFF',
+          template: this.virtualMachine.template,
+          os: this.virtualMachine.os,
+          ram: this.virtualMachine.ram,
+          memory: this.virtualMachine.memory,
+          created: this.virtualMachine.created
+        }
+      })
+        .then(res => {
+          if (res.status === 200) {
+            return res.data
+          }
+        })
+        .then(data => {
+          const object = JSON.parse(data.replace(/'/g, '"'))
+          window.alert(object.response)
+
+          for (var i = 0; i < this.virtualMachines.length; i++) {
+            if (this.virtualMachines[i].id === this.virtualMachine.id) {
+              this.virtualMachines.splice(i, 1, object.virtualMachine)
+            }
+          }
+
+          this.$router.push('/')
+        })
+        .catch(error => {
+          if (error.status === 400) {
+            window.alert('invalid input, object invalid')
+          } else if (error.status === 404) {
+            window.alert('page not found')
+          } else {
+            window.alert(`error: ${error}`)
+          }
+        })
     },
 
     share () {
-      window.alert('action performed - share')
+      window.alert('shared to ' + this.sharedTo)
     },
 
     deleteVM () {
-      window.alert('action performed - delete')
+      axios.delete(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${this.virtualMachine.name}`)
+        .then(res => {
+          if (res.status === 200) {
+            return res.data
+          }
+        })
+        .then(data => {
+          const object = JSON.parse(data.replace(/'/g, '"'))
+          window.alert(object.response)
+
+          for (var i = 0; i < this.virtualMachines.length; i++) {
+            if (this.virtualMachines[i].id === this.virtualMachine.id) {
+              this.virtualMachines.splice(i, 1)
+            }
+          }
+
+          this.$router.push('/')
+        })
+        .catch(error => {
+          if (error.status === 400) {
+            window.alert('invalid input, object invalid')
+          } else if (error.status === 404) {
+            window.alert('page not found')
+          } else {
+            window.alert(`error: ${error}`)
+          }
+        })
     }
   }
 }

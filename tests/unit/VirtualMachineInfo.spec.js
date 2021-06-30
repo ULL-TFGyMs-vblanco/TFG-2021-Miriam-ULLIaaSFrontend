@@ -279,6 +279,12 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#span-14').text()).toBe('Compartir')
   })
 
+  it('correct q-input attributes', async () => {
+    expect(wrapper.find('#q-input').attributes().dense).toBe('true')
+    expect(wrapper.find('#q-input').attributes().autofocus).toBe('true')
+    expect(wrapper.find('#q-input').attributes().counter).toBe('true')
+  })
+
   it('correct q-btn-8 attributes', async () => {
     expect(wrapper.find('#q-btn-8').attributes().size).toBe('sm')
     expect(wrapper.find('#q-btn-8').attributes().title).toBe('Eliminar')

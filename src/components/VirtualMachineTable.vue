@@ -4,7 +4,7 @@
       <router-link to="/vm"
                    style="text-decoration: none; color: black"
       >
-        <div class="q-pa-sm row items-center q-gutter-md justify-center"
+        <div class="q-pa-sm column items-center q-gutter-md justify-center"
              @click="saveVirtualMachine (virtualMachines[props.row.index])"
         >
           <img :src="images[props.row.index].url"
@@ -34,13 +34,15 @@
                 color="secondary"
                 style="color: #ec899a"
                 icon="power_settings_new"
-                @input="turnVirtualMachine (toggleValue[props.row.index])"
+                @input="turnVirtualMachine (virtualMachines[props.row.index], toggleValue[props.row.index])"
       ></q-toggle>
     </q-td>
   </q-tr>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'VirtualMachineTable',
 
@@ -61,11 +63,85 @@ export default {
       this.$store.dispatch('setVirtualMachineAction', vm)
     },
 
-    turnVirtualMachine (toggleValue) {
+    async turnVirtualMachine (vm, toggleValue) {
       if (toggleValue) {
-        window.alert('action performed - turn on')
+        axios.put(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${vm.name}`, {
+          action: 'turn on',
+          virtualMachine: {
+            id: vm.id,
+            name: vm.name,
+            description: vm.description,
+            status: 'ON',
+            template: vm.template,
+            os: vm.os,
+            ram: vm.ram,
+            memory: vm.memory,
+            created: vm.created
+          }
+        })
+          .then(res => {
+            if (res.status === 200) {
+              return res.data
+            }
+          })
+          .then(data => {
+            const object = JSON.parse(data.replace(/'/g, '"'))
+            window.alert(object.response)
+
+            for (var i = 0; i < this.virtualMachines.length; i++) {
+              if (this.virtualMachines[i].id === vm.id) {
+                this.virtualMachines.splice(i, 1, object.virtualMachine)
+              }
+            }
+          })
+          .catch(error => {
+            if (error.status === 400) {
+              window.alert('invalid input, object invalid')
+            } else if (error.status === 404) {
+              window.alert('page not found')
+            } else {
+              window.alert(`error: ${error}`)
+            }
+          })
       } else {
-        window.alert('action performed - turn off')
+        axios.put(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${vm.name}`, {
+          action: 'turn off',
+          virtualMachine: {
+            id: vm.id,
+            name: vm.name,
+            description: vm.description,
+            status: 'OFF',
+            template: vm.template,
+            os: vm.os,
+            ram: vm.ram,
+            memory: vm.memory,
+            created: vm.created
+          }
+        })
+          .then(res => {
+            if (res.status === 200) {
+              return res.data
+            }
+          })
+          .then(data => {
+            const object = JSON.parse(data.replace(/'/g, '"'))
+            window.alert(object.response)
+
+            for (var i = 0; i < this.virtualMachines.length; i++) {
+              if (this.virtualMachines[i].id === vm.id) {
+                this.virtualMachines.splice(i, 1, object.virtualMachine)
+              }
+            }
+          })
+          .catch(error => {
+            if (error.status === 400) {
+              window.alert('invalid input, object invalid')
+            } else if (error.status === 404) {
+              window.alert('page not found')
+            } else {
+              window.alert(`error: ${error}`)
+            }
+          })
       }
     }
   }

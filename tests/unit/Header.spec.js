@@ -16,6 +16,11 @@ const components = Object.keys(All).reduce((object, key) => {
 const localVue = createLocalVue()
 localVue.use(Quasar, { components })
 
+jest.mock('@/components/RightMenu', () => ({
+  name: 'RightMenu',
+  render: h => h('div')
+}))
+
 describe('Header', () => {
   const wrapper = shallowMount(Header, {
     localVue
