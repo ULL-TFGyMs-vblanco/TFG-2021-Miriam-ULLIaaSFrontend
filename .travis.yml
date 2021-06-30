@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - stable
+cache:
+  directories:
+    - node_modules
+script:
+  - npm install -g @vue/cli
+  - npm install
+  - npm run test:unit
+deploy:
+  provider: surge
+  domain: iaas-frontend.surge.sh

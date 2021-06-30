@@ -229,7 +229,7 @@ export default {
 
     if (this.$store.getters.virtualMachines === null) {
       this.$store.dispatch('setVirtualMachinesAction', this.virtualMachines.allVirtualMachines)
-      console.log('hola')
+      // console.log('hola')
     }
 
     var index = 0

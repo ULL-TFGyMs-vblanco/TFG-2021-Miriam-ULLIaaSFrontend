@@ -224,7 +224,9 @@
         </q-item>
       </q-expansion-item>
 
-      <q-expansion-item label="Contacto">
+      <q-expansion-item label="Contacto"
+                        id="q-expansion-item-2"
+      >
         <q-item clickable
                 tag="a"
                 target="_blank"

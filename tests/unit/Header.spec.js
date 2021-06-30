@@ -29,7 +29,7 @@ describe('Header', () => {
     expect(wrapper.find('#div-1').classes()).toEqual(['header'])
   })
 
-  it('correct q-header attributes - heighthint', async () => {
+  it('correct q-header attributes', async () => {
     expect(wrapper.find('#q-header').attributes().heighthint).toBe('98')
   })
 
@@ -41,31 +41,16 @@ describe('Header', () => {
     expect(wrapper.find('#q-toolbar-title').classes()).toEqual(['flex', 'center'])
   })
 
-  it('correct img-1 attributes - src', async () => {
+  it('correct img-1 attributes', async () => {
     expect(wrapper.find('#img-1').attributes().src).toBe('../assets/marca-ull-positivo.svg')
-  })
-
-  it('correct img-1 attributes - alt', async () => {
     expect(wrapper.find('#img-1').attributes().alt).toBe('Logo ULL')
-  })
-
-  it('correct img-1 attributes - width', async () => {
     expect(wrapper.find('#img-1').attributes().width).toBe('110')
   })
 
-  it('correct q-btn-1 attributes - dense', async () => {
+  it('correct q-btn-1 attributes', async () => {
     expect(wrapper.find('#q-btn-1').attributes().dense).toBe('true')
-  })
-
-  it('correct q-btn-1 attributes - flat', async () => {
     expect(wrapper.find('#q-btn-1').attributes().flat).toBe('true')
-  })
-
-  it('correct q-btn-1 attributes - round', async () => {
     expect(wrapper.find('#q-btn-1').attributes().round).toBe('true')
-  })
-
-  it('correct q-btn-1 attributes - icon', async () => {
     expect(wrapper.find('#q-btn-1').attributes().icon).toBe('menu')
   })
 
@@ -85,43 +70,22 @@ describe('Header', () => {
     expect(wrapper.find('#q-btn-2').classes()).toEqual(['bg-white'])
   })
 
-  it('correct q-btn-2 attributes - type', async () => {
+  it('correct q-btn-2 attributes', async () => {
     expect(wrapper.find('#q-btn-2').attributes().type).toBe('a')
-  })
-
-  it('correct q-btn-2 attributes - target', async () => {
     expect(wrapper.find('#q-btn-2').attributes().target).toBe('_blank')
-  })
-
-  it('correct q-btn-2 attributes - href', async () => {
     expect(wrapper.find('#q-btn-2').attributes().href).toBe('https://iaas.ull.es/')
-  })
-
-  it('correct q-btn-2 attributes - flat', async () => {
     expect(wrapper.find('#q-btn-2').attributes().flat).toBe('true')
   })
 
-  it('correct img-2 attributes - src', async () => {
+  it('correct img-2 attributes', async () => {
     expect(wrapper.find('#img-2').attributes().src).toBe('../assets/ovirt.png')
-  })
-
-  it('correct img-2 attributes - alt', async () => {
     expect(wrapper.find('#img-2').attributes().alt).toBe('Plataforma oVirt')
-  })
-
-  it('correct img-2 attributes - width', async () => {
     expect(wrapper.find('#img-2').attributes().width).toBe('50')
   })
 
-  it('correct q-drawer attributes - showifabove', async () => {
+  it('correct q-drawer attributes', async () => {
     expect(wrapper.find('#q-drawer').attributes().showifabove).toBe('true')
-  })
-
-  it('correct q-drawer attributes - side', async () => {
     expect(wrapper.find('#q-drawer').attributes().side).toBe('right')
-  })
-
-  it('correct q-drawer attributes - elevated', async () => {
     expect(wrapper.find('#q-drawer').attributes().elevated).toBe('true')
   })
 

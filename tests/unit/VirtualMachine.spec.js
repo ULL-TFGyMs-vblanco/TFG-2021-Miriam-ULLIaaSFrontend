@@ -25,10 +25,6 @@ describe('VirtualMachine', () => {
     expect(wrapper).toBeTruthy()
   })
 
-  it('contains q-page-container component', async () => {
-    expect(wrapper.find('q-page-container')).toBeTruthy()
-  })
-
   it('contains VirtualMachineInfo component', async () => {
     expect(wrapper.findComponent(VirtualMachineInfo).exists()).toBe(true)
   })

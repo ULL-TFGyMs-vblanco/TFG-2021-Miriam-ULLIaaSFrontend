@@ -58,19 +58,10 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#div-3').classes()).toEqual(['row', 'justify-around', 'buttons'])
   })
 
-  it('correct q-btn-1 attributes - size', async () => {
+  it('correct q-btn-1 attributes', async () => {
     expect(wrapper.find('#q-btn-1').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-1 attributes - title', async () => {
     expect(wrapper.find('#q-btn-1').attributes().title).toBe('Encender')
-  })
-
-  it('correct q-icon-1 attributes - name', async () => {
     expect(wrapper.find('#q-icon-1').attributes().name).toBe('power_settings_new')
-  })
-
-  it('correct q-icon-1 attributes - color', async () => {
     expect(wrapper.find('#q-icon-1').attributes().color).toBe('green')
   })
 
@@ -82,19 +73,10 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#span-1').text()).toBe('Encender')
   })
 
-  it('correct q-btn-2 attributes - size', async () => {
+  it('correct q-btn-2 attributes', async () => {
     expect(wrapper.find('#q-btn-2').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-2 attributes - title', async () => {
     expect(wrapper.find('#q-btn-2').attributes().title).toBe('Consola')
-  })
-
-  it('correct q-icon-2 attributes - color', async () => {
     expect(wrapper.find('#q-icon-2').attributes().color).toBe('grey')
-  })
-
-  it('correct q-icon-2 text', async () => {
     expect(wrapper.find('#q-icon-2').text()).toBe('>_')
   })
 
@@ -106,19 +88,10 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#span-2').text()).toBe('Consola')
   })
 
-  it('correct q-btn-3 attributes - size', async () => {
+  it('correct q-btn-3 attributes', async () => {
     expect(wrapper.find('#q-btn-3').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-3 attributes - title', async () => {
     expect(wrapper.find('#q-btn-3').attributes().title).toBe('Suspender')
-  })
-
-  it('correct q-icon-3 attributes - name', async () => {
     expect(wrapper.find('#q-icon-3').attributes().name).toBe('battery_alert')
-  })
-
-  it('correct q-icon-3 attributes - color', async () => {
     expect(wrapper.find('#q-icon-3').attributes().color).toBe('orange')
   })
 
@@ -130,19 +103,10 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#span-3').text()).toBe('Suspender')
   })
 
-  it('correct q-btn-4 attributes - size', async () => {
+  it('correct q-btn-4 attributes', async () => {
     expect(wrapper.find('#q-btn-4').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-4 attributes - title', async () => {
     expect(wrapper.find('#q-btn-4').attributes().title).toBe('Reiniciar')
-  })
-
-  it('correct q-icon-4 attributes - name', async () => {
     expect(wrapper.find('#q-icon-4').attributes().name).toBe('restart_alt')
-  })
-
-  it('correct q-icon-4 attributes - color', async () => {
     expect(wrapper.find('#q-icon-4').attributes().color).toBe('teal')
   })
 
@@ -154,19 +118,10 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#span-4').text()).toBe('Reiniciar')
   })
 
-  it('correct q-btn-5 attributes - size', async () => {
+  it('correct q-btn-5 attributes', async () => {
     expect(wrapper.find('#q-btn-5').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-5 attributes - title', async () => {
     expect(wrapper.find('#q-btn-5').attributes().title).toBe('Apagar')
-  })
-
-  it('correct q-icon-5 attributes - name', async () => {
     expect(wrapper.find('#q-icon-5').attributes().name).toBe('power_off')
-  })
-
-  it('correct q-icon-5 attributes - color', async () => {
     expect(wrapper.find('#q-icon-5').attributes().color).toBe('red')
   })
 
@@ -186,18 +141,13 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#q-card-section-1').classes()).toEqual(['q-pb-sm', 'row', 'justify-center'])
   })
 
-  it('correct img-1 attributes - src', async () => {
+  it('correct img-1 attributes', async () => {
     await wrapper.setData({
       image: '../assets/os/linux.jpg'
     })
+
     expect(wrapper.find('#img-1').attributes().src).toBe('../assets/os/linux.jpg')
-  })
-
-  it('correct img-1 attributes - alt', async () => {
     expect(wrapper.find('#img-1').attributes().alt).toBe('linux')
-  })
-
-  it('correct img-1 attributes - width', async () => {
     expect(wrapper.find('#img-1').attributes().width).toBe('90%')
   })
 
@@ -233,15 +183,9 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#div-7').text()).toBe('Descripción')
   })
 
-  it('correct q-field attributes - filled', async () => {
+  it('correct q-field attributes', async () => {
     expect(wrapper.find('.q-field').attributes().filled).toBe('true')
-  })
-
-  it('correct q-field attributes - dense', async () => {
     expect(wrapper.find('.q-field').attributes().dense).toBe('true')
-  })
-
-  it('correct q-field attributes - color', async () => {
     expect(wrapper.find('.q-field').attributes().color).toBe('black')
   })
 
@@ -301,23 +245,14 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#span-12').text()).toBe('YYYY-MM-DD')
   })
 
-  it('correct router-link attributes - to', async () => {
+  it('correct router-link attributes', async () => {
     expect(wrapper.find('#router-link').attributes().to).toBe('/form')
   })
 
-  it('correct q-btn-6 attributes - size', async () => {
+  it('correct q-btn-6 attributes', async () => {
     expect(wrapper.find('#q-btn-6').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-6 attributes - title', async () => {
     expect(wrapper.find('#q-btn-6').attributes().title).toBe('Editar')
-  })
-
-  it('correct q-icon-6 attributes - name', async () => {
     expect(wrapper.find('#q-icon-6').attributes().name).toBe('edit')
-  })
-
-  it('correct q-icon-6 attributes - color', async () => {
     expect(wrapper.find('#q-icon-6').attributes().color).toBe('blue')
   })
 
@@ -329,19 +264,10 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#span-13').text()).toBe('Editar')
   })
 
-  it('correct q-btn-7 attributes - size', async () => {
+  it('correct q-btn-7 attributes', async () => {
     expect(wrapper.find('#q-btn-7').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-7 attributes - title', async () => {
     expect(wrapper.find('#q-btn-7').attributes().title).toBe('Compartir')
-  })
-
-  it('correct q-icon-7 attributes - name', async () => {
     expect(wrapper.find('#q-icon-7').attributes().name).toBe('share')
-  })
-
-  it('correct q-icon-7 attributes - color', async () => {
     expect(wrapper.find('#q-icon-7').attributes().color).toBe('grey')
   })
 
@@ -353,19 +279,10 @@ describe('VirtualMachineInfo', () => {
     expect(wrapper.find('#span-14').text()).toBe('Compartir')
   })
 
-  it('correct q-btn-8 attributes - size', async () => {
+  it('correct q-btn-8 attributes', async () => {
     expect(wrapper.find('#q-btn-8').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-8 attributes - title', async () => {
     expect(wrapper.find('#q-btn-8').attributes().title).toBe('Eliminar')
-  })
-
-  it('correct q-icon-8 attributes - name', async () => {
     expect(wrapper.find('#q-icon-8').attributes().name).toBe('delete')
-  })
-
-  it('correct q-icon-8 attributes - color', async () => {
     expect(wrapper.find('#q-icon-8').attributes().color).toBe('red')
   })
 

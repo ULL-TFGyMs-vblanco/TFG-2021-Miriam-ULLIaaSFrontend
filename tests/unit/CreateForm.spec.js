@@ -73,19 +73,10 @@ describe('CreateForm', () => {
     expect(wrapper.find('.q-input').classes()).toEqual(['bg-white', 'q-pl-sm', 'q-input'])
   })
 
-  it('correct q-input attributes - borderless', async () => {
+  it('correct q-input attributes', async () => {
     expect(wrapper.find('.q-input').attributes().borderless).toBe('true')
-  })
-
-  it('correct q-input attributes - dense', async () => {
     expect(wrapper.find('.q-input').attributes().dense).toBe('true')
-  })
-
-  it('correct q-input-1 attributes - type', async () => {
     expect(wrapper.find('#q-input-1').attributes().type).toBe('text')
-  })
-
-  it('correct q-input-1 attributes - hint', async () => {
     expect(wrapper.find('#q-input-1').attributes().hint).toBe('Rellena el nombre')
   })
 
@@ -101,11 +92,8 @@ describe('CreateForm', () => {
     expect(wrapper.find('#div-6').text()).toBe('Descripción *')
   })
 
-  it('correct q-input-2 attributes - type', async () => {
+  it('correct q-input-2 attributes', async () => {
     expect(wrapper.find('#q-input-2').attributes().type).toBe('text')
-  })
-
-  it('correct q-input-2 attributes - hint', async () => {
     expect(wrapper.find('#q-input-2').attributes().hint).toBe('Rellena la descripción')
   })
 
@@ -121,11 +109,8 @@ describe('CreateForm', () => {
     expect(wrapper.find('#div-8').text()).toBe('Plantilla')
   })
 
-  it('correct q-select-1 attributes - options', async () => {
+  it('correct q-select-1 attributes', async () => {
     expect(wrapper.find('#q-select-1').attributes().options).toBe('windows-10,ubuntu-2004,macos-11')
-  })
-
-  it('correct q-select-1 attributes - hint', async () => {
     expect(wrapper.find('#q-select-1').attributes().hint).toBe('Rellena la plantilla')
   })
 
@@ -141,11 +126,8 @@ describe('CreateForm', () => {
     expect(wrapper.find('#div-10').text()).toBe('Sistema operativo *')
   })
 
-  it('correct q-select-2 attributes - options', async () => {
+  it('correct q-select-2 attributes', async () => {
     expect(wrapper.find('#q-select-2').attributes().options).toBe('windows,linux,macOS')
-  })
-
-  it('correct q-select-2 attributes - hint', async () => {
     expect(wrapper.find('#q-select-2').attributes().hint).toBe('Rellena el sistema operativo')
   })
 
@@ -165,11 +147,8 @@ describe('CreateForm', () => {
     expect(wrapper.find('#div-13').text()).toBe('RAM *')
   })
 
-  it('correct q-input-3 attributes - type', async () => {
+  it('correct q-input-3 attributes', async () => {
     expect(wrapper.find('#q-input-3').attributes().type).toBe('number')
-  })
-
-  it('correct q-input-3 attributes - hint', async () => {
     expect(wrapper.find('#q-input-3').attributes().hint).toBe('Rellena la RAM')
   })
 
@@ -185,11 +164,8 @@ describe('CreateForm', () => {
     expect(wrapper.find('#div-15').text()).toBe('Almacenamiento *')
   })
 
-  it('correct q-input-4 attributes - type', async () => {
+  it('correct q-input-4 attributes', async () => {
     expect(wrapper.find('#q-input-4').attributes().type).toBe('number')
-  })
-
-  it('correct q-input-4 attributes - hint', async () => {
     expect(wrapper.find('#q-input-4').attributes().hint).toBe('Rellena el almacenamiento')
   })
 
@@ -197,23 +173,17 @@ describe('CreateForm', () => {
     expect(wrapper.find('#div-16').classes()).toEqual(['row', 'justify-around', 'buttons', 'q-py-lg'])
   })
 
-  it('correct router-link attributes - to', async () => {
+  it('correct router-link attributes', async () => {
     expect(wrapper.find('#router-link').attributes().to).toBe('/')
   })
 
-  it('correct q-btn-1 attributes - size', async () => {
+  it('correct q-btn-1 attributes', async () => {
     expect(wrapper.find('#q-btn-1').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-1 attributes - title', async () => {
     expect(wrapper.find('#q-btn-1').attributes().title).toBe('Cancelar')
   })
 
-  it('correct q-icon-1 attributes - name', async () => {
+  it('correct q-icon-1 attributes', async () => {
     expect(wrapper.find('#q-icon-1').attributes().name).toBe('close')
-  })
-
-  it('correct q-icon-1 attributes - color', async () => {
     expect(wrapper.find('#q-icon-1').attributes().color).toBe('grey')
   })
 
@@ -225,19 +195,13 @@ describe('CreateForm', () => {
     expect(wrapper.find('#span-1').text()).toBe('Cancelar')
   })
 
-  it('correct q-btn-2 attributes - size', async () => {
+  it('correct q-btn-2 attributes', async () => {
     expect(wrapper.find('#q-btn-2').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-2 attributes - title', async () => {
     expect(wrapper.find('#q-btn-2').attributes().title).toBe('Reiniciar')
   })
 
-  it('correct q-icon-2 attributes - name', async () => {
+  it('correct q-icon-2 attributes', async () => {
     expect(wrapper.find('#q-icon-2').attributes().name).toBe('restart_alt')
-  })
-
-  it('correct q-icon-2 attributes - color', async () => {
     expect(wrapper.find('#q-icon-2').attributes().color).toBe('orange')
   })
 
@@ -249,19 +213,13 @@ describe('CreateForm', () => {
     expect(wrapper.find('#span-2').text()).toBe('Reiniciar')
   })
 
-  it('correct q-btn-3 attributes - size', async () => {
+  it('correct q-btn-3 attributes', async () => {
     expect(wrapper.find('#q-btn-3').attributes().size).toBe('sm')
-  })
-
-  it('correct q-btn-3 attributes - title', async () => {
     expect(wrapper.find('#q-btn-3').attributes().title).toBe('Guardar')
   })
 
-  it('correct q-icon-3 attributes - name', async () => {
+  it('correct q-icon-3 attributes', async () => {
     expect(wrapper.find('#q-icon-3').attributes().name).toBe('save')
-  })
-
-  it('correct q-icon-3 attributes - color', async () => {
     expect(wrapper.find('#q-icon-3').attributes().color).toBe('blue')
   })
 
