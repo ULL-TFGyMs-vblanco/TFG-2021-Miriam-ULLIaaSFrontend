@@ -12,4 +12,6 @@ on:
   branch: Test
 deploy:
   provider: surge
+  project: ./dist
   domain: iaas-frontend.surge.sh
+  cleanup: false
