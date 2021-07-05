@@ -13,8 +13,9 @@ script:
   - npm run test:unit
   - npm run serve &
   - npm run cy:run
-on:
-  branch: Test
+branches:
+  only:
+    - main
 deploy:
   provider: surge
   project: ./dist
