@@ -9,7 +9,7 @@ script:
   - npm run build
   - npm run test:unit
 on:
-  branch: Test
+  branch: main
 deploy:
   provider: surge
   project: ./dist
