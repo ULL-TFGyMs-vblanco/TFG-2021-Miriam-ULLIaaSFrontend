@@ -3,15 +3,22 @@ node_js:
   - 12
 git:
   submodules: false
+cache:
+  directories:
+    - node_modules
 script:
   - npm install -g @vue/cli
   - npm install
   - npm run build
   - npm run test:unit
+  - npm run serve &
+  - npm run cy:run
 on:
-  branch: main
+  branch: Test
 deploy:
   provider: surge
   project: ./dist
   domain: iaas-frontend.surge.sh
   cleanup: false
+  on:
+    branch: main
