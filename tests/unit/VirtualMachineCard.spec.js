@@ -87,6 +87,8 @@ describe('VirtualMachineCard', () => {
 
   it('turnVirtualMachine method', async () => {
     await wrapper.vm.turnVirtualMachine(vms[0], true)
+    await wrapper.vm.turnVirtualMachine(vms[0], false)
+
     expect(wrapper.vm.toggleValue[0]).toBe(false)
   })
 })

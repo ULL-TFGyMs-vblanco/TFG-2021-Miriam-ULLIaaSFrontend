@@ -6,6 +6,7 @@ import * as All from 'quasar'
 import VirtualMachineTable from '@/components/VirtualMachineTable'
 import routes from '@/router/routes'
 import store from '@/store/index'
+import axios from "axios";
 
 const { Quasar } = All
 const components = Object.keys(All).reduce((object, key) => {
@@ -87,6 +88,28 @@ describe('VirtualMachineTable', () => {
 
   it('turnVirtualMachine method', async () => {
     await wrapper.vm.turnVirtualMachine(vms[0], true)
+    await wrapper.vm.turnVirtualMachine(vms[0], false)
+
     expect(wrapper.vm.toggleValue[0]).toBe(false)
+  })
+
+  it('turnVirtualMachine status 200', async () => {
+    axios.put(`https://tfg-iaas-vm.app.smartmock.io/api/vm/${vms[0].name}`, {
+      action: 'turn on',
+      virtualMachine: {
+        id: vms[0].id,
+        name: vms[0].name,
+        description: vms[0].description,
+        status: 'ON',
+        template: vms[0].template,
+        os: vms[0].os,
+        ram: vms[0].ram,
+        memory: vms[0].memory,
+        created: vms[0].created
+      }
+    })
+      .then(res => {
+        expect(res.status).toBe(200)
+      })
   })
 })

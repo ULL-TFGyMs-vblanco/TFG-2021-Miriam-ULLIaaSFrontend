@@ -6,7 +6,6 @@ import Panel from '@/components/Panel'
 import VirtualMachineTable from '@/components/VirtualMachineTable'
 import VirtualMachineCard from '@/components/VirtualMachineCard'
 import store from '@/store/index'
-import axios from "axios";
 
 const { Quasar } = All
 const components = Object.keys(All).reduce((object, key) => {
@@ -89,13 +88,24 @@ describe('Panel', () => {
   })
 
   it('correct data value', async () => {
-    expect(wrapper.vm.virtualMachines).toEqual(vms)
-
     const url = require(`@/assets/os/linux.jpg`)
+
+    expect(wrapper.vm.virtualMachines).toEqual(vms)
     expect(wrapper.vm.images).toEqual([{ url: url }, { url: url }])
-
     expect(wrapper.vm.data[0].name).toBe('SyTW-BackEND4')
-
     expect(wrapper.vm.toggleValue[0]).toBe(false)
+  })
+
+  it('mount without virtualMachines value', async () => {
+    store.dispatch('setVirtualMachinesAction', null)
+    const wrapper1 = shallowMount(Panel, {
+      localVue,
+      store
+    })
+    await wrapper1.setData({
+      virtualMachines: vms
+    })
+
+    expect(wrapper.vm.virtualMachines).toEqual(vms)
   })
 })
