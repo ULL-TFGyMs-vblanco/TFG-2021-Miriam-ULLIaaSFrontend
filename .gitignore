@@ -2,6 +2,7 @@
 node_modules
 /dist
 /tests/cypress/videos
+/coverage
 
 
 # local env files

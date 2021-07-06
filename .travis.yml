@@ -11,8 +11,12 @@ script:
   - npm install
   - npm run build
   - npm run test:unit
+  - npm install -D codecov
+  - npm run test:coverage
   - npm run serve &
   - npm run cy:run
+after-success:
+  - ./node_modules/.bin/codecov --token="db3dd35a-2859-4b4f-80ef-1f69e10aef41"
 branches:
   only:
     - main
