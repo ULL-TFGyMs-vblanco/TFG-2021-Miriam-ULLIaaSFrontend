@@ -87,6 +87,6 @@ describe('VirtualMachineTable', () => {
 
   it('turnVirtualMachine method', async () => {
     await wrapper.vm.turnVirtualMachine(vms[0], true)
-    expect(wrapper.vm.toggleValue[0]).toBe(true)
+    expect(wrapper.vm.toggleValue[0]).toBe(false)
   })
 })
