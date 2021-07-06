@@ -247,6 +247,20 @@ describe('EditForm', () => {
     expect(wrapper.find('#span-3').text()).toBe('Guardar')
   })
 
+  it('submit inputs', async () => {
+    const nameInput = wrapper.find('#q-input-1')
+    const descriptionInput = wrapper.find('#q-input-2')
+
+    nameInput.setValue = "prueba nombre"
+    descriptionInput.setValue = "prueba descripción"
+
+    await wrapper.vm.onSubmit()
+
+    expect(wrapper.vm.name).toBe('SyTW-BackEND4')
+    expect(wrapper.vm.description).toBe('Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?')
+    expect(wrapper.vm.$route.name).toBe('Home')
+  })
+
   it('reset inputs', async () => {
     const nameInput = wrapper.find('#q-input-1')
     const descriptionInput = wrapper.find('#q-input-2')

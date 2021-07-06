@@ -5,6 +5,7 @@ import * as All from 'quasar'
 import Home from '@/views/Home'
 import Panel from '@/components/Panel'
 import routes from '@/router/routes'
+import store from '@/store/index'
 
 const { Quasar } = All
 const components = Object.keys(All).reduce((object, key) => {
@@ -23,7 +24,8 @@ describe('Home', () => {
   const router = new VueRouter({ routes })
   const wrapper = shallowMount(Home, {
     localVue,
-    router
+    router,
+    store
   })
 
   it('mounts without errors', async () => {
@@ -85,5 +87,10 @@ describe('Home', () => {
       'content': 'table'
     }
     expect(wrapper.findComponent(Panel).props()).toEqual(props)
+  })
+
+  it('saveFormType method', async () => {
+    await wrapper.vm.saveFormType()
+    expect(store.getters.formType).toBe('create')
   })
 })

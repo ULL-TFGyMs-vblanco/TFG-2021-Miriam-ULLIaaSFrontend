@@ -26,6 +26,8 @@ jest.mock('@/components/EditForm', () => ({
 }))
 
 describe('Form', () => {
+  store.dispatch('setFormTypeAction', 'create')
+
   const wrapper = shallowMount(Form, {
     localVue,
     store
@@ -36,9 +38,6 @@ describe('Form', () => {
   })
 
   it('contains CreateForm component', async () => {
-    await wrapper.setData({
-      formType: 'create'
-    })
     expect(wrapper.findComponent(CreateForm).exists()).toBe(true)
   })
 

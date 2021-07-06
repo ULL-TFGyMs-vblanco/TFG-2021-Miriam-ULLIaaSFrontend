@@ -22,10 +22,37 @@ localVue.use(VueRouter)
 localVue.use(Vuex)
 
 describe('VirtualMachineInfo', () => {
+  store.dispatch('setVirtualMachinesAction', [
+    {
+      id: '4328',
+      name: 'SyTW-BackEND4',
+      description: 'Lorem ipsum dolor sit amet',
+      status: 'SUSPEND',
+      os: 'linux',
+      ram: '4 GiB',
+      memory: '20 GiB',
+      template: 'ubuntu-1804',
+      ips: ['173.16.116.2', '172.16.117.2'],
+      created: 'YYYY-MM-DD'
+    },
+    {
+      id: '1100',
+      name: 'SyTW-FrontEND',
+      description: 'Lorem ipsum dolor si',
+      status: 'ON',
+      os: 'linux',
+      ram: '4 GiB',
+      memory: '20 GiB',
+      template: 'ubuntu-1804',
+      ips: ['173.16.113.3', '172.16.114.2'],
+      created: 'YYYY-MM-DD'
+    }
+  ])
+
   store.dispatch('setVirtualMachineAction', {
     id: '4328',
     name: 'SyTW-BackEND4',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?',
+    description: 'Lorem ipsum dolor sit amet',
     status: 'SUSPEND',
     os: 'linux',
     ram: '4 GiB',
@@ -194,7 +221,7 @@ describe('VirtualMachineInfo', () => {
   })
 
   it('correct span-6 text', async () => {
-    expect(wrapper.find('#span-6').text()).toBe('Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?')
+    expect(wrapper.find('#span-6').text()).toBe('Lorem ipsum dolor sit amet')
   })
 
   it('correct div-8 text', async () => {
@@ -298,5 +325,52 @@ describe('VirtualMachineInfo', () => {
 
   it('correct span-15 text', async () => {
     expect(wrapper.find('#span-15').text()).toBe('Eliminar')
+  })
+
+  it('saveFormType method', async () => {
+    await wrapper.vm.saveFormType()
+    expect(store.getters.formType).toBe('edit')
+  })
+
+  it('turnOn method', async () => {
+    await wrapper.vm.turnOn()
+    expect(wrapper.vm.$route.name).toBe('Home')
+  })
+
+  it('showConsole method', async () => {
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
+    await wrapper.vm.showConsole()
+
+    expect(window.alert).toBeCalledWith('action performed - show console')
+  })
+
+  it('suspend method', async () => {
+    await wrapper.vm.suspend()
+    expect(wrapper.vm.$route.name).toBe('Home')
+  })
+
+  it('reboot method', async () => {
+    await wrapper.vm.reboot()
+    expect(wrapper.vm.$route.name).toBe('Home')
+  })
+
+  it('turnOff method', async () => {
+    await wrapper.vm.turnOff()
+    expect(wrapper.vm.$route.name).toBe('Home')
+  })
+
+  it('share method', async () => {
+    await wrapper.setData({
+      sharedTo: 'Person'
+    })
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
+    await wrapper.vm.share()
+
+    expect(window.alert).toBeCalledWith('shared to Person')
+  })
+
+  it('deleteVM method', async () => {
+    await wrapper.vm.deleteVM()
+    expect(wrapper.vm.$route.name).toBe('Home')
   })
 })

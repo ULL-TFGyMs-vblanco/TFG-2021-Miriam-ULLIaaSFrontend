@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import * as All from 'quasar'
+import axios from 'axios'
 
 import CreateForm from '@/components/CreateForm'
 import routes from '@/router/routes'
@@ -229,6 +230,20 @@ describe('CreateForm', () => {
 
   it('correct span-3 text', async () => {
     expect(wrapper.find('#span-3').text()).toBe('Guardar')
+  })
+
+  it('submit inputs', async () => {
+    const nameInput = wrapper.find('#q-input-1')
+    const descriptionInput = wrapper.find('#q-input-2')
+
+    nameInput.setValue = "prueba nombre"
+    descriptionInput.setValue = "prueba descripción"
+
+    await wrapper.vm.onSubmit()
+
+    expect(wrapper.vm.name).toBe('')
+    expect(wrapper.vm.description).toBe('')
+    expect(wrapper.vm.$route.name).toBe('Home')
   })
 
   it('reset inputs', async () => {
