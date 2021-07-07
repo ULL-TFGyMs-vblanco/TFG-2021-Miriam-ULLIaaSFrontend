@@ -21,35 +21,8 @@ localVue.use(Quasar, { components })
 localVue.use(VueRouter)
 localVue.use(Vuex)
 
-describe('VirtualMachineInfo', () => {
-  store.dispatch('setVirtualMachinesAction', [
-    {
-      id: '4328',
-      name: 'SyTW-BackEND4',
-      description: 'Lorem ipsum dolor sit amet',
-      status: 'SUSPEND',
-      os: 'linux',
-      ram: '4 GiB',
-      memory: '20 GiB',
-      template: 'ubuntu-1804',
-      ips: ['173.16.116.2', '172.16.117.2'],
-      created: 'YYYY-MM-DD'
-    },
-    {
-      id: '1100',
-      name: 'SyTW-FrontEND',
-      description: 'Lorem ipsum dolor si',
-      status: 'ON',
-      os: 'linux',
-      ram: '4 GiB',
-      memory: '20 GiB',
-      template: 'ubuntu-1804',
-      ips: ['173.16.113.3', '172.16.114.2'],
-      created: 'YYYY-MM-DD'
-    }
-  ])
-
-  store.dispatch('setVirtualMachineAction', {
+const vms = [
+  {
     id: '4328',
     name: 'SyTW-BackEND4',
     description: 'Lorem ipsum dolor sit amet',
@@ -60,7 +33,33 @@ describe('VirtualMachineInfo', () => {
     template: 'ubuntu-1804',
     ips: ['173.16.116.2', '172.16.117.2'],
     created: 'YYYY-MM-DD'
-  })
+  },
+  {
+    id: '1100',
+    name: 'SyTW-FrontEND',
+    description: 'Lorem ipsum dolor si',
+    status: 'ON',
+    os: 'linux',
+    ram: '4 GiB',
+    memory: '20 GiB',
+    template: 'ubuntu-1804',
+    ips: ['173.16.113.3', '172.16.114.2'],
+    created: 'YYYY-MM-DD'
+  }
+]
+
+const mockPut = jest.fn().mockImplementation(() => Promise.resolve({ status: 200 }))
+const mockDelete = jest.fn().mockImplementation(() => Promise.resolve({ status: 200 }))
+
+jest.mock('axios', () => ({
+  put: () => mockPut(),
+  delete: () => mockDelete()
+}))
+
+describe('VirtualMachineInfo', () => {
+  store.dispatch('setVirtualMachinesAction', vms)
+
+  store.dispatch('setVirtualMachineAction', vms[0])
 
   const router = new VueRouter({ routes })
   const wrapper = shallowMount(VirtualMachineInfo, {
@@ -333,8 +332,9 @@ describe('VirtualMachineInfo', () => {
   })
 
   it('turnOn method', async () => {
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
     await wrapper.vm.turnOn()
-    expect(wrapper.vm.$route.name).toBe('Home')
+    expect(mockPut).toHaveBeenCalledTimes(1)
   })
 
   it('showConsole method', async () => {
@@ -346,17 +346,17 @@ describe('VirtualMachineInfo', () => {
 
   it('suspend method', async () => {
     await wrapper.vm.suspend()
-    expect(wrapper.vm.$route.name).toBe('Home')
+    expect(mockPut).toHaveBeenCalledTimes(2)
   })
 
   it('reboot method', async () => {
     await wrapper.vm.reboot()
-    expect(wrapper.vm.$route.name).toBe('Home')
+    expect(mockPut).toHaveBeenCalledTimes(3)
   })
 
   it('turnOff method', async () => {
     await wrapper.vm.turnOff()
-    expect(wrapper.vm.$route.name).toBe('Home')
+    expect(mockPut).toHaveBeenCalledTimes(4)
   })
 
   it('share method', async () => {
@@ -371,6 +371,6 @@ describe('VirtualMachineInfo', () => {
 
   it('deleteVM method', async () => {
     await wrapper.vm.deleteVM()
-    expect(wrapper.vm.$route.name).toBe('Home')
+    expect(mockDelete).toHaveBeenCalledTimes(1)
   })
 })

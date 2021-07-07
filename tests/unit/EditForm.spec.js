@@ -21,6 +21,12 @@ localVue.use(Quasar, { components })
 localVue.use(VueRouter)
 localVue.use(Vuex)
 
+const mockPut = jest.fn().mockImplementation(() => Promise.resolve({ status: 200 }))
+
+jest.mock('axios', () => ({
+  put: () => mockPut()
+}))
+
 describe('EditForm', () => {
   store.dispatch('setVirtualMachineAction', {
     id: '4328',
@@ -254,11 +260,12 @@ describe('EditForm', () => {
     nameInput.setValue = "prueba nombre"
     descriptionInput.setValue = "prueba descripción"
 
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
     await wrapper.vm.onSubmit()
 
     expect(wrapper.vm.name).toBe('SyTW-BackEND4')
     expect(wrapper.vm.description).toBe('Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?')
-    expect(wrapper.vm.$route.name).toBe('Home')
+    expect(mockPut).toHaveBeenCalledTimes(1)
   })
 
   it('reset inputs', async () => {

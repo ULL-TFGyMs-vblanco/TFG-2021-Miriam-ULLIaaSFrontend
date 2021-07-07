@@ -22,6 +22,12 @@ localVue.use(Quasar, { components })
 localVue.use(VueRouter)
 localVue.use(Vuex)
 
+const mockPost = jest.fn().mockImplementation(() => Promise.resolve({ status: 201 }))
+
+jest.mock('axios', () => ({
+  post: () => mockPost()
+}))
+
 describe('CreateForm', () => {
   const router = new VueRouter({ routes })
   const wrapper = shallowMount(CreateForm, {
@@ -239,11 +245,12 @@ describe('CreateForm', () => {
     nameInput.setValue = "prueba nombre"
     descriptionInput.setValue = "prueba descripción"
 
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
     await wrapper.vm.onSubmit()
 
     expect(wrapper.vm.name).toBe('')
     expect(wrapper.vm.description).toBe('')
-    expect(wrapper.vm.$route.name).toBe('Home')
+    expect(mockPost).toHaveBeenCalledTimes(1)
   })
 
   it('reset inputs', async () => {

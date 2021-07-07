@@ -47,6 +47,17 @@ const vms = [
   }
 ]
 
+const mockGet = jest.fn().mockImplementation(() => Promise.resolve({
+  status: 200,
+  data: {
+    allvirtualMachines: vms
+  }
+}))
+
+jest.mock('axios', () => ({
+  get: () => mockGet()
+}))
+
 describe('Panel', () => {
   store.dispatch('setVirtualMachinesAction', vms)
 
@@ -98,14 +109,16 @@ describe('Panel', () => {
 
   it('mount without virtualMachines value', async () => {
     store.dispatch('setVirtualMachinesAction', null)
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
     const wrapper1 = shallowMount(Panel, {
       localVue,
       store
     })
+    expect(mockGet).toHaveBeenCalledTimes(1)
+
     await wrapper1.setData({
       virtualMachines: vms
     })
-
-    expect(wrapper.vm.virtualMachines).toEqual(vms)
+    expect(wrapper1.vm.virtualMachines).toEqual(vms)
   })
 })

@@ -48,6 +48,12 @@ const vms = [
   }
 ]
 
+const mockPut = jest.fn().mockImplementation(() => Promise.resolve({ status: 200 }))
+
+jest.mock('axios', () => ({
+  put: () => mockPut()
+}))
+
 describe('VirtualMachineCard', () => {
   store.dispatch('setVirtualMachinesAction', vms)
 
@@ -86,9 +92,11 @@ describe('VirtualMachineCard', () => {
   })
 
   it('turnVirtualMachine method', async () => {
+    jest.spyOn(window, 'alert').mockImplementation(() => {})
+
     await wrapper.vm.turnVirtualMachine(vms[0], true)
     await wrapper.vm.turnVirtualMachine(vms[0], false)
 
-    expect(wrapper.vm.toggleValue[0]).toBe(false)
+    expect(mockPut).toHaveBeenCalledTimes(2)
   })
 })
